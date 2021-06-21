@@ -1,0 +1,37 @@
+* 서블릿에서 특정 페이지로 포워딩 하는 방법
+
+1. Dispatcher방식
+
+   DispatcherServlet.java
+   RequestDispatcher dispatcher = 
+	request.getRequestDispatcher("dispatcher.jsp");
+	request.setAttribute("request","requestValue");
+	dispatcher.forward(request, response);
+
+
+   dispatcher.jsp
+   request 속성 값 : <%=request.getAttribute("request") %>
+
+   cf. 포워딩이 되더라도 주소가 변경되지 않는다.
+       (같은 request영역을 공유하게 됨)
+       
+  ★ session은 두가지 포워딩 방식이 모두 공유가 되어서 상관이없는데 request 방식은 dispatcher방식으로 해야지 공유됨.
+
+2. Redirect 방식
+
+   RedirectServlet.java
+   request.setAttribute("request", "requestValue");
+   response.sendRedirect("redirect.jsp");
+
+   redirect.jsp
+   request 속성 값 : <%=request.getAttribute("request") %>
+
+   cf. 포워딩될 때 브라우저의 주소 표시줄의 URL이 변경된다.
+       포워딩된 jsp페이지에서는 서블릿에서 request영역에 
+       공유한 속성값에 접근 할 수 없다.
+
+
+
+
+
+

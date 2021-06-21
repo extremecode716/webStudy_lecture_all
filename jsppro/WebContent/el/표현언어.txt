@@ -1,0 +1,26 @@
+String str = "jsp";
+
+표현식 태그  :  <%=str %>
+
+	      <%=article.getId()%>
+
+	     <%=session.getAttribute("test")%>
+
+	     <%=request.getParameter("name")%>
+
+	     <%=request.getParameterValues("choice")%>
+
+
+// ----------------
+// 표현 언어는 메소드를 사용하지 않는다. 
+request.setAttribute("str",str);
+
+표현언어(EL) : ${str}  // 공유를 해서 사용할 수 있다.
+
+	      ${article.id}
+
+	      ${sessionScope.test}
+
+	      ${param.name}
+
+	      ${paramValues.choice}

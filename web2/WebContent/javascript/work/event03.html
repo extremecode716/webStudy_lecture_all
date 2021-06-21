@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<HTML>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<!-- 방법3. 이벤트 처리 방식 : 표준 이벤트 모델 방식(DOM Level 2 방식)
+                    한 객체에  여러개의 이벤트를 등록할 수 있다.
+-->
+
+<input type="button" id="btn" value="확인" />
+
+<script>
+   // getElementById()를 통해 문서 객체 검색
+   var btn = document.getElementById('btn');
+
+    function btnEvent1(){
+        alert('Hello world 1');
+    }
+    function btnEvent2(){
+        alert('Hello world 2');
+    }
+    
+if(btn.addEventListener){	// 표준 방식 브라우저(크롬,파이어폭스,사파리 등)
+       btn.addEventListener('click', btnEvent1); 	// 복수개의 이벤트 등록 가능
+       btn.addEventListener('click', btnEvent2); 
+} else if(btn.attachEvent){	// 비표준 방식브라우저(IE8 이하) 
+       btn.attachEvent('onclick', btnEvent1);	// 복수개의 이벤트 등록 가능
+       btn.attachEvent('onclick', btnEvent2);
+}
+</script>
+</body>
+</HTML>

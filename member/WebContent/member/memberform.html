@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 가입 폼</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+	function openDaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+				// 우편번호와 주소 정보를 해당 필드에 넣고, 커서를 상세주소 필드로 이동한다.
+//				document.getElementById('join_zip1').value = data.postcode1;
+				document.getElementById('post').value = data.zonecode;
+				document.getElementById('address').value = data.address;
+				
+			}
+		}).open();
+	}
+</script>
+
+<!-- 외부 자바스크립트 파일 불러오기 -->
+<script src="member.js"></script>
+
+<script>
+	/* $(document).ready(function(){
+		
+		// ID중복검사
+		$("#idcheck").click(function(){
+			if($("#id").val()==""){
+				alert("ID를 입력하세요.");
+				$("#id").focus();
+				return false;
+			}else{
+				// open("팝업창에 실행될 문서명","윈도우이름","옵션")
+				var ref="idcheck.jsp?id="+$("#id").val();
+				window.open(ref,"mywin","width=250,height=150");
+			}			
+		});
+		
+		// 주민번호  뒷자리로 포커스 이동
+		$("#jumin1").keyup(function(){
+			
+			if($("#jumin1").val().length == 6)
+				$("#jumin2").focus();
+		});
+		
+		// 도메인 선택
+		$("#email").change(function(){
+			if($("#email").val()==""){		// 직접 입력 선택
+				$("#domain").attr("readOnly", false);
+				$("#domain").val("").focus();
+			}else{							// 도메인을 선택
+				$("#domain").val($("#email").val());
+				$("#domain").attr("readOnly","readOnly");				
+			}
+		});
+		
+		// 유효성 검사
+		$("form").submit(function(){
+			
+			if($("#id").val() == ""){
+				alert("ID를 입력하세요.");
+				$("#id").focus();
+				return false;
+			}
+			if($("#passwd").val()==""){
+				alert("비밀번호를 입력하세요.");
+				$("#passwd").focus();
+				return false;
+			}
+			if($("#name").val()==""){
+				alert("이름을 입력하세요.");
+				$("#name").focus();
+				return false;
+			}
+			if($("#jumin1").val()==""){
+				alert("주민번호 앞자리를 입력하세요.");
+				$("#jumin1").focus();
+				return false;
+			}
+			if($("#jumin1").val().length != 6){
+				alert("주민번호 앞자리 6자리를 입력하세요.");
+				$("#jumin1").val("").focus();
+				return false;
+			}
+			// isNaN() : 문자가 포함되면 true를 리턴하는 함수
+			if(isNaN($("#jumin1").val())){
+				alert("숫자만 입력하세요.");
+				$("#jumin1").val("").focus();
+				return false;
+		    }
+			if($("#jumin2").val()==""){
+				alert("주민번호 뒷자리를 입력하세요.");
+				$("#jumin2").focus();
+				return false;
+			}
+			if($("#jumin2").val().length != 7){
+				alert("주민번호 뒷자리 7자리를 입력하세요.");
+				$("#jumin2").val("").focus();
+				return false;
+			}
+			// isNaN() : 문자가 포함되면 true를 리턴하는 함수
+			if(isNaN($("#jumin2").val())){
+				alert("숫자만 입력하세요.");
+				$("#jumin2").val("").focus();
+				return false;
+		    }
+			if($("#mailid").val()==""){
+				alert("EMail주소를 입력하세요.");
+				$("#mailid").focus();
+				return false;
+			}
+			if($("#domain").val()==""){
+				alert("도메인을 입력하세요.");
+				$("#domain").focus();
+				return false;
+			}
+			if($("#tel1").val()==""){
+				alert("전화번호 앞자리를 입력하세요.");
+				$("#tel1").focus();
+				return false;
+			}
+			if(isNaN($("#tel1").val())){
+				alert("숫자만 입력하세요.");
+				$("#tel1").val("").focus();
+				return false;
+			}
+			if($("#tel2").val()==""){
+				alert("전화번호 중간자리를 입력하세요.");
+				$("#tel2").focus();
+				return false;
+			}
+			if(isNaN($("#tel2").val())){
+				alert("숫자만 입력하세요.");
+				$("#tel2").val("").focus();
+				return false;
+			}
+			if($("#tel3").val()==""){
+				alert("전화번호 끝자리를 입력하세요.");
+				$("#tel3").focus();
+				return false;
+			}
+			if(isNaN($("#tel3").val())){
+				alert("숫자만 입력하세요.");
+				$("#tel3").val("").focus();
+				return false;
+			}
+			if($("#phone1").val()==""){
+				alert("핸드폰 앞자리를 선택 하세요.");
+				return false;
+			}
+			if($("#phone2").val()==""){
+				alert("핸드폰 중간자리를 입력하세요.");
+				$("#phone2").focus();
+				return false;
+			}
+			if(isNaN($("#phone2").val())){
+				alert("숫자만 입력하세요.");
+				$("#phone2").val("").focus();
+				return false;
+			}
+			if($("#phone3").val()==""){
+				alert("핸드폰 끝자리를 입력하세요.");
+				$("#phone3").focus();
+				return false;
+			}
+			if(isNaN($("#phone3").val())){
+				alert("숫자만 입력하세요.");
+				$("#phone3").val("").focus();
+				return false;
+			}
+			if($("#post").val()==""){
+				alert("우편번호를 입력하세요.");
+				$("#post").focus();
+				return false;
+			}
+			if($("#address").val()==""){
+				alert("주소를 입력하세요.");
+				$("#address").focus();
+				return false;
+			}
+			if($("#male").is(":checked")==false &&
+			   $("#female").is(":checked")==false){
+				alert("남.여 중에서 1개를 선택 하세요");
+				return false;
+			}
+			
+//			 var cnt=0;
+//			if($("#h1").is(":checked")) cnt++;
+//			if($("#h2").is(":checked")) cnt++;
+//			if($("#h3").is(":checked")) cnt++;
+//			if($("#h4").is(":checked")) cnt++;
+//			if($("#h5").is(":checked")) cnt++;
+			
+//			if(cnt < 2){
+//				alert("취미를 2개 이상 선택 하세요.");
+//				return false;
+//			} 
+			
+		if($("input:checkbox[name='hobby']:checked").length < 2){
+			alert("취미를 2개 이상 선택 하세요.");
+			return false;
+		}
+			
+		if($("#intro").val()==""){
+			alert("자기소개를 입력하세요.");
+			$("#intro").focus();
+			return false;
+		}		
+		if($("#intro").val().length > 100){
+			alert("자기소개를 100자 이내로 입력하세요.");
+			$("#intro").focus();
+			return false;
+		}	
+			
+			
+		});	// submit() end	
+		
+		
+	}); // ready() end 
+*/
+
+</script>
+
+</head>
+<body>
+
+<form method="post" action="member.jsp"> 
+<table border=1 width=450 align="center">
+	<caption>회원 가입 폼</caption>
+	<tr><td>ID</td>
+		<td><input type=text autofocus="autofocus" id="id" name="id">
+			<input type=button value="ID중복검사" id="idcheck">
+			<div id="myid"></div>
+		</td>
+	</tr>
+	<tr><td>비밀번호</td>
+		<td><input type=password id="passwd" name="passwd">
+		</td>
+	</tr>
+	<tr><td>성명</td>
+		<td><input type=text id="name" name="name"></td>
+	</tr>
+	<tr><td>주민번호</td>
+		<td><input type=text size=6 maxlength=6 id="jumin1" name="jumin1">-
+			<input type=text size=7 maxlength=7 id="jumin2" name="jumin2">
+		</td>
+	</tr>
+	<tr><td>E-Mail</td>
+		<td><input type=text size=10 id="mailid" name="mailid">@
+			<input type=text size=10 id="domain" name="domain">
+			<select id="email">
+				<option value="">직접입력</option>
+				<option value="naver.com">네이버</option>
+				<option value="daum.net">다음</option>
+				<option value="nate.com">네이트</option>
+				<option value="gmail.com">gmail</option>
+			</select>	
+		</td>
+	</tr>
+	<tr><td>전화번호</td>
+		<td><input type=text size=4 maxlength=4 id="tel1" name="tel1">-
+		    <input type=text size=4 maxlength=4 id="tel2" name="tel2">-
+		    <input type=text size=4 maxlength=4 id="tel3" name="tel3">-
+		</td>
+	</tr>
+	<tr><td>핸드폰</td>
+		<td><select id="phone1" name="phone1">
+				<option value="">번호선택</option>
+				<option value="010">010</option>
+				<option value="011">011</option>
+				<option value="016">016</option>
+				<option value="018">018</option>
+				<option value="019">019</option>
+			</select>-
+			<input type=text size=4 maxlength=4 id="phone2" name="phone2">-
+		    <input type=text size=4 maxlength=4 id="phone3" name="phone3">		
+		</td>	
+	</tr>
+	<tr><td>우편번호</td>
+		<td><input type=text size=5 maxlength=5 id="post" name="post">
+			<input type=button value="우편검색" onClick="openDaumPostcode()">
+		</td>
+	</tr>
+	<tr><td>주소</td>
+		<td><input type=text size=45 id="address" name="address"></td>
+	</tr>
+	<tr><td>성별</td>
+		<td><input type=radio id="male" name="gender" value="남자">남자
+			<input type=radio id="female" name="gender" value="여자">여자
+		</td>
+	</tr>
+	<tr><td>취미</td>
+		<td><input type=checkbox id="h1" name="hobby" value="공부">공부
+			<input type=checkbox id="h2" name="hobby" value="게임">게임
+			<input type=checkbox id="h3" name="hobby" value="등산">등산
+			<input type=checkbox id="h4" name="hobby" value="낚시">낚시
+			<input type=checkbox id="h5" name="hobby" value="쇼핑">쇼핑
+		</td>
+	</tr>
+	<tr><td>자기소개</td>
+		<td><textarea rows=5 cols=50 id="intro" name="intro"
+		     placeholder="자기소개를 100자 이내로 입력하세요"></textarea>		
+		</td>
+	</tr>
+	<tr><td colspan=2 align=center>
+			<input type=submit value="회원가입">
+			<input type=reset value="취소">
+		</td>
+	</tr>		
+</table>
+</form>
+
+</body>
+</html>

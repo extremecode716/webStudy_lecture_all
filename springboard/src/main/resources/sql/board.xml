@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+
+	<!-- 게시판 저장 -->
+	<insert id="board_insert" parameterType="board">
+		insert into board53
+		(board_num,board_name,board_pass,board_subject,
+		board_content,board_re_ref,board_re_lev,board_re_seq,board_readcount,board_date)
+		values
+		(board53_num_seq.nextval,#{board_name},#{board_pass},#{board_subject},
+		#{board_content},board53_num_seq.nextval,0,0,0,SYSDATE)
+	</insert>
+
+	<!-- 게시판 총게시물 수 -->
+	<select id="board_count" resultType="int">
+		select count(board_num) from board53
+	</select>
+
+	<!-- 게시판 목록 (page번호를 전달받아서 startRow와 endRow를 구함) -->
+	<select id="board_list" parameterType="int" resultType="board">
+	    <![CDATA[
+		select * from 
+		 (select rownum rnum,BOARD_NUM,BOARD_NAME,BOARD_SUBJECT,BOARD_CONTENT,
+		 BOARD_RE_REF,BOARD_RE_LEV,BOARD_RE_SEQ,BOARD_READCOUNT,
+	 	 BOARD_DATE from  
+	  	 (select * from board53 order by BOARD_RE_REF desc,BOARD_RE_SEQ asc)) 
+	   		 where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
+		]]>
+	</select>
+
+	<!-- 게시판 내용보기 -->
+	<select id="board_cont" resultType="board"
+		parameterType="int">
+		select * from board53 where board_num=#{board_num}
+	</select>
+
+	<!-- 게시판 조회수 증가 -->
+	<update id="board_hit" parameterType="int">
+		update board53 set
+		board_readcount=board_readcount+1
+		where board_num=#{board_num}
+	</update>
+
+	<!-- 게시물 수정 -->
+	<update id="board_edit" parameterType="board">
+		update board53 set
+		board_name=#{board_name},
+		board_subject=#{board_subject},
+		board_content=#{board_content}
+		where board_num=#{board_num}
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="board_del" parameterType="int">
+		delete from board53 where
+		board_num=#{board_num}
+	</delete>
+
+	<!-- 답변글 레벨 증가 -->
+	<update id="board_Level" parameterType="board">
+		update board53 set
+		board_re_seq=board_re_seq+1
+		where board_re_ref=#{board_re_ref} and
+		board_re_seq > #{board_re_seq}
+	</update>
+
+	<!-- 답변글 저장 -->
+	<insert id="board_reply" parameterType="board">
+		insert into board53
+		(board_num,board_name,board_subject,board_content,
+		board_pass,board_re_ref,board_re_lev,board_re_seq,board_readcount,board_date)
+		values(board53_num_seq.nextval,#{board_name},#{board_subject},#{board_content},
+		#{board_pass},#{board_re_ref},#{board_re_lev},#{board_re_seq},0,SYSDATE)
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

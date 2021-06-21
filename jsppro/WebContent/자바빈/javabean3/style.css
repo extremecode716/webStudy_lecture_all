@@ -1,0 +1,13 @@
+   a:link,a:visited,a:active {
+      text-decoration : none;
+   }
+   a:hover {
+      text-decoration : underline;
+      color : red;
+   }
+   TABLE, TD,TR, TH{
+          font-size:9pt;
+   }
+   p{
+      font-size:9pt;
+   }

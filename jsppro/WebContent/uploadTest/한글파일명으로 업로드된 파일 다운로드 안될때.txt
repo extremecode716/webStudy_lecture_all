@@ -1,0 +1,18 @@
+* 한글파일명으로 업로드된 파일 다운로드 안될때
+  
+server.xml
+
+<Connector connectionTimeout="20000" 	        
+           port="8080" 			   
+           protocol="HTTP/1.1"   redirectPort="8443"  
+	
+           URIEncoding="utf-8"
+           useBodyEncodingForURI="true"
+/>
+
+---> server.xml파일
+      <Connector 태그에  
+       URIEncoding="utf-8" 
+       useBodyEncodingForURI="true" 을 추가한후 
+       Tomcat 서버를 재구동하면 한글명으로 업로드된 파일 
+       다운로드 가능함.  

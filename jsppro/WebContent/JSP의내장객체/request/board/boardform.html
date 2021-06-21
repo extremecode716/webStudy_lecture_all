@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 폼</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	/* $(function(){
+		$("form").submit(function(){
+			if($.trim($("#writer").val()) == ""){
+				alert("작성자명을 입력하세요.");
+				$("#writer").focus();
+				return false;
+			}
+			if($.trim($("#passwd").val()) == ""){
+				alert("비밀번호를 입력하세요.");
+				$("#passwd").focus();
+				return false;
+			}
+			if($("#passwd").val().length <2 || 
+			   $("#passwd").val().length >8	){
+				alert("비밀번호는 2~8자로 입력하세요");
+				$("#passwd").val("").focus();
+				return false;
+			}
+			if($.trim($("#subject").val()) == ""){
+				alert("제목을 입력하세요.");
+				$("#subject").focus();
+				return false;
+			}
+			if($.trim($("#content").val()) == ""){
+				alert("내용을 입력하세요.");
+				$("#content").focus();
+				return false;
+			}
+			if($.trim($("#content").val()).length > 200){
+				alert("내용은 200자 이내로 입력하세요");
+				$("#content").focus();
+				return false;
+			}
+		});		
+	});	 */
+</script>
+
+<script src="board.js"></script>
+
+</head>
+<body>
+
+<form method="post" action="board.jsp">
+<table border=1 width=600 align=center>
+	<caption>게시판</caption>
+	<tr><th>작성자</th>  <!-- th : 가운데 정렬, 찐하게 출력 -->
+		<td><input type=text size=30 id="writer" name="writer" 
+							         placeholder="작성자명 입력"></td>
+	</tr>
+	<tr><th>비밀번호</th>
+		<td><input type=password size=30 id="passwd" name="passwd" placeholder="2~8자 이내 입력"></td>
+	</tr>
+	<tr><th>제목</th>
+		<td><input type=text size=60 id="subject" name="subject"></td>
+	</tr>
+	<tr><th>내용</th>
+		<td><textarea rows="5" cols="50" id="content" name="content" placeholder="200자 이내로 입력"></textarea></td>
+	</tr>
+	<tr><th>파일첨부</th>
+		<td><input type=file></td>
+	</tr>
+	<tr><td colspan=2 align=center>
+			<input type=submit value="글작성">	 <!-- submit :전송기능 있는 버튼 -->
+			<!-- <input type=button value="글작성2">  -->  <!-- button :전송기능 없는 버튼 -->
+			<!-- <button>글작성3</button>	 -->			 <!-- 전송기능이 있는 버튼 -->
+			<!-- <button type=submit>글작성4</button>  --> <!-- 전송기능이 있는 버튼 -->
+			<!-- <button type=button>글작성5</button> -->  <!-- 전송기능이 없는 버튼 --> 
+			<input type=reset value="취소">      <!-- 초기화 버튼 -->
+		</td>
+	</tr>
+</table>
+</form>
+
+</body>
+</html>

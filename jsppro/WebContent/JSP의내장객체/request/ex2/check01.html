@@ -1,0 +1,51 @@
+<html>
+	<head><title>좋은 사이트 선택</title>	
+	<meta charset="utf-8">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script>
+	$(document).ready(function(){
+//		$("form").submit(function(){
+		$("#myform").submit(function(){
+			/* var cnt=0;
+			if($("#h1").is(":checked"))	cnt++;
+			if($("#h2").is(":checked"))	cnt++;
+			if($("#h3").is(":checked"))	cnt++;
+			if($("#h4").is(":checked"))	cnt++;
+			if($("#h5").is(":checked"))	cnt++;
+			if($("#h6").is(":checked"))	cnt++;
+			if($("#h7").is(":checked"))	cnt++;
+			
+			if(cnt < 2){
+				alert("사이트 2개이상 선택하세요");
+				return false;
+			} */
+			
+			if($("input:checkbox[name='site']:checked").length < 2){
+				alert("사이트 2개이상 선택하세요");
+				return false;
+			}			
+			
+		});
+	});	
+	</script>
+	</head>
+<body>
+
+<form id="myform" name=myform  method=post action="check.jsp"> 
+
+	좋은 사이트를 2개 이상 선택하세요<br><br> 
+	<input type="checkbox" id="h1" name="site" value="야후">야후<br>
+	<input type="checkbox" id="h2" name="site" value="다음">다음<br>
+	<input type="checkbox" id="h3" name="site" value="엠파스">엠파스<br>
+	<input type="checkbox" id="h4" name="site" value="네이버">네이버<br>
+	<input type="checkbox" id="h5" name="site" value="한미르">한미르<br>
+	<input type="checkbox" id="h6" name="site" value="네띠앙">네띠앙<br>
+	<input type="checkbox" id="h7" name="site" value="라이코스">라이코스<br><br>
+
+	<input type="submit" value="전송">
+	<input type="reset" value="취소">
+
+</form> 
+
+</body>
+</html>

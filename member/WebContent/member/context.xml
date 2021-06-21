@@ -1,0 +1,15 @@
+<Context> 
+  <Resource name="jdbc/orcl" 
+   auth="Container"
+   type="javax.sql.DataSource" 
+   username="totoro" 
+   password="totoro123"
+   driverClassName="oracle.jdbc.driver.OracleDriver"
+   factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"   
+   url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+   maxActive="500" 
+   maxIdle="100"/>  
+</Context>
+
+<!-- url="jdbc:oracle:thin:@127.0.0.1:1521:xe" -->
+<!-- url="jdbc:oracle:thin:@orcl.cyqct7nnxb1u.ap-northeast-2.rds.amazonaws.com:1521:orcl" -->

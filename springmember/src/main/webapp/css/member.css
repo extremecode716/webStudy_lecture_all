@@ -1,0 +1,125 @@
+@CHARSET "UTF-8";
+
+/*로그인 페이지 ui*/
+#login_wrap{
+	width:350px; height:227px; margin-top:100px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue;
+	border-radius:20px; box-shadow:15px 15px 15px red;
+}
+#login_wrap .login_title{
+	margin:30px 0 0 135px; width:70px;
+	background:skyblue; border-radius:15px; text-align:center;
+	font-size:20px;
+}
+#login_wrap th{
+	background:skyblue; border-radius:15px;
+}
+#login_t{
+	margin:20px 0 0 50px;
+}
+#login_menu{
+	margin:25px 0 0 47px;
+}
+
+/*비번찾기 ui*/
+#pwd_wrap{
+	width:270px; height:270px;
+	margin-top:14px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid red;
+	border-radius:15px;
+}
+#pwd_wrap .pwd_title{
+	margin:30px 0 0 88px; width:90px; font-size:20px;
+	text-align:center; background:skyblue; border-radius:10px;
+}
+#pwd_t{
+	margin:20px 0 0 30px;
+}
+#pwd_t th{background:skyblue; border-radius:15px;}
+#pwd_menu{margin:20px 0 0 88px;}
+#pwd_close{margin:47px 0 0 109px;}
+
+/*회원가입(member_join.jsp) ui */
+#join_wrap{
+	width:570px; height:500px;
+	margin-top:50px; margin-left:auto; margin-right:auto;
+	border:1px solid blue;
+	border-radius:20px;
+}
+#join_wrap .join_title{
+	margin:25px 0 0 225px; width:120px;
+	font-size:20px; background:skyblue; border-radius:15px;
+	text-align:center;
+}
+#join_t{margin:20px 0 0 30px;}
+
+#join_t th{background:skyblue; border-radius:15px;}
+
+#join_menu{margin:30px 0 0 220px;}
+
+/*비번찾기 결과 ui*/
+#pwd_wrap .pwd_title2{
+	margin:50px 0 0 65px; width:140px; background:skyblue;
+	border-radius:20px; text-align:center;
+	font-size:20px; padding:3px;
+}
+
+#pwd_t2{margin:20px 0 0 60px;}
+#pwd_t2 th{background:skyblue; border-radius:20px;}
+#pwd_close2{
+	margin:110px 0 0 120px;
+}
+
+/*회원 탈퇴*/
+#del_wrap{
+	width:400px; height:350px; margin-top:70px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+	box-shadow:15px 15px 15px red;
+}
+
+#del_wrap .del_title{
+	margin:20px 0 0 140px; width:100px; background:skyblue;
+	border-radius:15px; text-align:center; font-size:20px;
+}
+#del_t{
+	margin:20px 0 0 30px;
+}
+#del_t th{background:skyblue; border-radius:15px;}
+#del_menu{margin:26px 0 0 140px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

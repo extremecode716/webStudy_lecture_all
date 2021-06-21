@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date객체</title>
+</head>
+<body>
+
+<script>
+	var t = new Date();
+	
+	var y = t.getFullYear();	//년
+	var m = t.getMonth()+1;     //월(0~11)
+	var d = t.getDate();		//일
+	
+	var h = t.getHours();		//시간
+	var mm = t.getMinutes();	//분
+	var s = t.getSeconds();		//초	
+	var w = t.getDay();			//요일(0~6)
+	
+	var week = ['일','월','화','수','목','금','토'];
+	
+	document.write(y+"-"+m+"-"+d+" "+h+":"+mm+":"+s+" ");
+//	document.write(w); 		 		// w=4:목
+	document.write(week[w]+"요일");  // 4:목
+
+</script>
+
+</body>
+</html>

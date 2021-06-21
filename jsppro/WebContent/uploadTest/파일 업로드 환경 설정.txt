@@ -1,0 +1,9 @@
+* 파일 업로드 환경 설정
+
+jsppro - WebContent - uploadTest
+
+
+		    - upload (업로드 된 파일 저장위치)
+
+
+		    - WEB-INF - lib - COS.jar 

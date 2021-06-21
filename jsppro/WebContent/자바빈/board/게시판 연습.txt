@@ -1,0 +1,19 @@
+게시판 연습
+
+create table board1112(
+    no number   primary key,
+    writer  varchar2(20),
+    subject  varchar2(100),
+    content   varchar2(1000),
+    register   timestamp); 
+
+
+create sequence  board1112_seq;
+
+
+board - BoardDataBean.java (DTO)
+board - BoardDBBean.java (DAO)
+
+
+
+

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myboard">
+
+	<!-- 글작성(원문) -->
+	<insert id="board_insert" parameterType="board">
+	 insert into model22 values(model22_seq.nextval,#{board_name},
+	 #{board_pass},#{board_subject},#{board_content},
+	 #{board_file,jdbcType=VARCHAR},model22_seq.nextval,0,0,0,sysdate)
+	</insert>
+	
+	<!-- 글갯수 -->
+	<select id="board_count" resultType="int">
+	 select count(*) from model22
+	</select>
+	
+	<!-- 글목록 -->
+	<!-- page 전달-->
+	<select id="board_list" parameterType="int" resultType="board">
+	 select * from (select rownum rnum, board.* from (
+	  select * from model22 order by board_re_ref desc,board_re_seq asc) board )
+	  where rnum &gt;= (#{page}-1) * 10 + 1   and rnum &lt;= #{page}*10
+	</select> 
+	
+	<!-- Map 전달 -->
+	<!-- <select id="board_list" parameterType="Map" resultType="board">
+	 select * from (select rownum rnum, board.* from (
+	  select * from model22 order by board_re_ref desc,board_re_seq asc) board )
+	  where rnum &gt;= #{start} and rnum &lt;= #{end}
+	</select> -->
+	
+	<!-- 조회수 증가 -->
+	<update id="board_updatecount" parameterType="int">
+     update model22 set board_readcount=board_readcount+1 where board_num = #{board_num}	
+	</update>
+	
+	<!-- 상세페이지, 수정폼 -->
+	<select id="board_content" parameterType="int" resultType="board">
+	 select * from model22 where board_num = #{board_num}
+	</select>
+	
+	<!-- 댓글 출력순서 -->
+	<update id="board_updateseq" parameterType="board">
+	 update model22 set board_re_seq=board_re_seq+1 
+	  where board_re_ref = #{board_re_ref} and board_re_seq &gt; #{board_re_seq}
+	</update>
+	
+	<!-- 댓글 작성 -->
+	<insert id="board_reply" parameterType="board">
+	 insert into model22 values(model22_seq.nextval,#{board_name},
+	 #{board_pass},#{board_subject},#{board_content},
+	 #{board_file,jdbcType=VARCHAR},#{board_re_ref},#{board_re_lev},#{board_re_seq},0,sysdate)
+	</insert>
+
+	<!-- 글수정 -->
+	<update id="board_update" parameterType="board">
+	 update model22 set board_name=#{board_name}, board_subject=#{board_subject},
+	 board_content=#{board_content} where board_num=#{board_num}
+	</update>
+
+	<!-- 글삭제 -->
+	<delete id="board_delete" parameterType="int">
+	 delete from model22 where board_num=#{board_num}
+	</delete>
+
+
+
+	<!-- <select id="getSomething" parameterType="int" resultType="#package.#modelname">
+		SELECT
+		columnname1,
+		columnname2,
+		columnname3
+		FROM tablename1
+		WHERE columnname1 = #{value}
+	</select>
+
+	<resultMap type="#modelname" id="YourResultSet">
+		<id property="param1" column="columnname1" />
+		<result property="param2" column="columnname2" />
+		<result property="param3" column="columnname3" />
+	</resultMap>
+
+	<select id="getAll" resultMap="YourResultSet">
+		SELECT * FROM tablename1
+	</select>
+
+	<insert id="insertSomething" parameterType="#modelname">
+		INSERT INTO tablename1 (columnname1, columnname2, columnname3)
+		VALUES(#{value1},#{value2},#{value3})
+	</insert>
+
+	<update id="updateSomething" parameterType="#modelname">
+		UPDATE tablename1
+		SET
+		columnname1=#{param1}
+		WHERE
+		columnname2 = #{param2}
+	</update>
+
+	<delete id="deleteSomething" parameterType="int">
+		DELETE FROM tablename1 WHERE
+		columnname1 = #{param1}
+	</delete> -->
+
+</mapper>

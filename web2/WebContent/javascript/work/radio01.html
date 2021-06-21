@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function check(){
+		var r = document.getElementById("r");
+		var b = document.getElementById("b");
+		var y = document.getElementById("y");
+		
+		if(r.checked) document.bgColor = r.value;
+		if(b.checked) document.bgColor = b.value;
+		if(y.checked) document.bgColor = y.value;
+		
+	}
+</script>
+</head>
+<body>
+<form>
+	<input type=radio id="r" name="color" value="red" onClick="check()">빨강
+	<input type=radio id="b" name="color" value="blue" onClick="check()">파랑
+	<input type=radio id="y" name="color" value="yellow" onClick="check()">노랑
+</form>
+</body>
+</html>

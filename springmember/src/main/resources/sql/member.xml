@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberns">
+    
+        
+    <!-- 비번 검색 -->
+    <select id="pwd_find" parameterType="member" resultType="member">
+     select *  from join_member where join_id=#{join_id} and join_name=#{join_name}
+    </select>
+    
+    <!-- 회원저장 -->
+    <insert id="member_join" parameterType="member">
+     insert into join_member (join_code,join_id,join_pwd,join_name,
+     join_zip1,join_addr1,join_addr2,join_tel,join_phone,join_email,join_profile,
+     join_regdate,join_state) values(join_member_joincode_seq.nextval,
+     #{join_id},#{join_pwd},#{join_name},
+     #{join_zip1},#{join_addr1},#{join_addr2},#{join_tel},
+     #{join_phone},#{join_email},#{join_profile,jdbcType=VARCHAR},sysdate,1)
+    </insert>
+    
+    <!-- 로그인 인증 -->
+    <select id="login_check" parameterType="String" resultType="member">
+     select * from join_member where join_id=#{id} and join_state=1
+    </select>
+    
+    <!-- 회원수정 -->
+    <update id="member_edit" parameterType="member">
+     update join_member set join_pwd=#{join_pwd},join_name=#{join_name},
+     join_zip1=#{join_zip1},join_addr1=#{join_addr1},
+     join_addr2=#{join_addr2},join_tel=#{join_tel},join_phone=#{join_phone},
+     join_email=#{join_email},join_profile=#{join_profile,jdbcType=VARCHAR} 
+     where join_id=#{join_id}
+    </update>    
+    
+    <!-- 회원삭제 -->
+    <update id="member_delete" parameterType="member">
+      update join_member set join_delcont=#{join_delcont}, join_state=2,
+      join_deldate=sysdate where join_id=#{join_id}
+    </update>
+    
+</mapper>
+
+
+
+
+
+
+
+

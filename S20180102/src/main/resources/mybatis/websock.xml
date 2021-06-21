@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Test">
+
+	<!-- 웹소켓에 연결된 인원수 구하기 -->
+	<select id="cnt" resultType="int">
+		select cnt from chat
+	</select>
+	
+	<!-- 웹소켓에 연결된 인원증가 -->
+	<insert id="insert">
+		insert into chat values(1)
+	</insert>
+		
+	<!-- 인원수 증가 -->	
+	<update id="update">
+		update chat set cnt=cnt+1
+	</update>
+	
+	<!-- 인원수 감소-->
+	<update id="delcount">
+		update chat set cnt=cnt-1
+	</update>	
+	
+	
+	<!-- 관리자 입장 -->
+	<update id="admin_update">
+		update chat set cnt=1
+	</update>
+	
+	
+	<!-- 인원수 0으로 초기화 -->
+	<update id="init">
+		update chat set cnt = 0
+	</update>
+
+</mapper>

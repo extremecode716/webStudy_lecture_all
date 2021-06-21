@@ -1,0 +1,5 @@
+java servlet 파일 저장 위치
+
+D:\WebStudy_Lecture\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\jsppro\org\apache\jsp
+또는
+C:\Users\user\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\jsppro\org\apache\jsp

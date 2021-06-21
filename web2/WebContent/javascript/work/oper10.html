@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script>
+	// 논리연산자 : &&, ||, !
+	// 5과목의 점수를 입력 받아서 합격, 불합격 여부를 출력하는 프로그램을 작성하세요?
+	// 단, 각 과목당 과락은 40점이고 평균 60점 이상을 받아야 합격
+	
+	var n1 = prompt("과목1을 입력하세요?","");
+	var n2 = prompt("과목2을 입력하세요?","");
+	var n3 = prompt("과목3을 입력하세요?","");
+	var n4 = prompt("과목4을 입력하세요?","");
+	var n5 = prompt("과목5을 입력하세요?","");
+	
+//	var total = n1+n2+n3+n4+n5; //  Number("30") ---> 30
+	var total = Number(n1)+Number(n2)+Number(n3)+Number(n4)+Number(n5);
+	var avg = total / 5;
+	
+	if(n1>=40 && n2>=40 && n3>=40 && n4>=40 && n5>=40 && avg>=60){
+		alert("합격");
+	}else{
+		alert("불합격");
+	}
+	
+	</script>
+	
+</body>
+</html>

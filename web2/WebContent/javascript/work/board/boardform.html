@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 폼</title>
+<script>
+	/* function check(){
+		var writer=document.getElementById("writer");	
+		var passwd=document.getElementById("passwd");	
+		var subject=document.getElementById("subject");	
+		var content=document.getElementById("content");	
+		
+		if(writer.value==""){
+			alert("작성자명을 입력하세요.");
+			writer.focus();
+			return false;
+		}
+		if(passwd.value==""){
+			alert("비밀번호를 입력하세요.");
+			passwd.focus();
+			return false;
+		}
+		if(passwd.value.length < 2 || passwd.value.length > 8){
+			alert("2~8자로 입력하세요.")
+			passwd.value="";
+			passwd.focus();
+			return false;
+		}
+		if(subject.value==""){
+			alert("제목을 입력하세요.");
+			subject.focus();
+			return false;
+		}
+		if(content.value==""){
+			alert("내용을 입력하세요.");
+			content.focus();
+			return false;
+		}
+		if(content.value.length > 200){
+			alert("200자 이내로 입력하세요.");
+			return false;
+		}
+		
+	} */
+</script>
+
+<script src="board.js"></script>
+
+</head>
+<body>
+
+	<form method="post" action="board.jsp" onsubmit="return check()">
+		<table border=1 width=400 align="center">
+			<caption>게시판</caption>
+			<!-- th: 찐하게 출력, 가운데 정렬 -->
+			<tr>
+				<th>작성자</th>
+				<td><input type=text size=20 placeholder="작성자명 입력" id="writer"
+					name="writer"></td>
+			</tr>
+			<tr>
+				<th>비밀번호</th>
+				<td><input type=password size=20 placeholder="2~8자 이내 입력"
+					id="passwd" name="passwd"></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td><input type=text size=30 id="subject" name="subject"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea rows="5" cols="30" placeholder="200자 이내로 입력"
+						id="content" name="content"></textarea></td>
+			</tr>
+			<tr>
+				<th>파일첨부</th>
+				<td><input type=file></td>
+			</tr>
+			<tr>
+				<td colspan=2 align="center"><input type=submit value="글작성">
+					<input type=reset value="취소"></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>location객체</title>
+</head>
+<body>
+
+<script>
+	document.write("href:"+location.href+"<br>");
+	document.write("hash:"+location.hash+"<br>");
+	document.write("hostname:"+location.hostname+"<br>");
+	document.write("host:"+location.host+"<br>");
+	document.write("protocol:"+location.protocol+"<br>");
+	
+	function call(){
+		alert("호출 성공");
+		location.reload();		// 새로 고침
+	}
+
+</script>
+
+	<input type="button" value="호출"  onClick="call()">
+
+</body>
+</html>

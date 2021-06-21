@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지 연습</title>
+</head>
+<body>
+
+<!-- 이미지 불러오기 -->
+<!-- 상대 경로
+1. 이미지가 같은 디렉토리 안에 있는 이미지 불러오기 : <img src="Koala.jpg">
+2. 하위 디렉토리(img) 안에 있는 이미지 불러오기 :  <img src="img/Koala.jpg">
+3. 상위 디렉토리에 있는 이미지 불러오기 :          <img src="../Koala.jpg">
+-->
+<img src="img/Koala.jpg" width=200 height=200 title="코알라 이미지"> <br><br>
+
+<!-- 이미지 정렬 -->
+<!-- 1.왼쪽 정렬 -->
+<img src="img/Penguins.jpg" width=150 height=150 align=left><br><br><br><br><br><br><br><br>  
+
+<!-- 2.가운데 정렬 -->
+<!-- 이미지는 align=left, right는 정렬이 되지만 가운데 정렬은 바로 안되기 때문에 부모 태그 속성으로 정렬해줘야한다. -->
+<img src="img/Penguins.jpg" width=150 height=150 align=center><br><br><br><!-- 가운데 정렬 안됨 -->
+
+<p align="center">
+	<img src="img/Penguins.jpg" width=150 height=150><br><br><br>
+</p>
+
+<center>
+	<img src="img/Penguins.jpg" width=150 height=150><br><br><br>
+</center>
+	
+<!-- 3.오른쪽 정렬 -->
+<img src="img/Penguins.jpg" width=150 height=150 align=right><br><br><br><br><br><br>
+<br><br><br><br><br><br>
+
+<!-- 이미지와 텍스트 같이 출력 -->
+<img src="img/Desert.jpg" width=150 height=150 align="top">사막 이미지 <br><br>
+<img src="img/Desert.jpg" width=150 height=150 align="middle">사막 이미지 <br><br>
+<img src="img/Desert.jpg" width=150 height=150 align="bottom">사막 이미지 <br><br>
+
+
+
+
+</body>
+</html>

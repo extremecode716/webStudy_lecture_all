@@ -1,0 +1,44 @@
+Q1. EMP(사원테이블)에서 급여를 많이 받는 사원 5명 출력
+
+방법1
+
+1)  뷰생성
+   create or replace view sal_top5_view
+   as
+   select ename, sal from emp order by sal desc;
+
+2) 뷰에서 rownum을 이용해서 5명만 추출
+    select rownum,ename,sal from sal_top5_view 
+    where rownum <= 5;
+
+방법2. 인라인 뷰
+   select rownum,ename,sal from
+   (select ename, sal from    emp order by sal desc) 
+   where rownum <= 5;
+
+
+cf. 급여를 많이 받는 사람(3~5번째 출력)
+select * from(select rownum rnum,ename, sal from
+(select ename, sal from  emp order by sal desc)) 
+where rnum >=3 and rnum <= 5 
+
+
+
+Q2. 입사일이 빠른 사원 5명 출력
+방법1.
+1) 뷰 생성
+        create or replace view view_hire
+        as
+        select empno, ename, hiredate from emp
+        order by hiredate asc;
+
+2) 뷰에서 입사일 빠른 사원 5명 추출
+    select rownum, empno, ename, hiredate from   view_hire  
+    where rownum <= 5;
+
+
+방법2. 인라인 뷰
+    select rownum, empno, ename, hiredate from (select      empno, ename, hiredate from emp order by 
+    hiredate asc)  where rownum <= 5;
+        
+    

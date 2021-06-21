@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MultiplicationTable</title>
+</head>
+<body>
+	<script>
+		/* 	과제. 
+		구구단(2~9단)을 열방향(세로방향)으로 출력 하는        
+		프로그램을  작성하세요?
+		(테이블 태그를 사용해서 처리하세요) 
+		 */
+		const maxDan = 9;
+		const minDan = 2;
+
+		document.write('<table border="1" width=80% align="center">');
+		document.write('<caption style="font-size:2rem; font-weight:bold;">구구단</caption>');
+		document.write('<thead>');
+		document.write('<tr>');
+		(function() {
+			for (let i = minDan; i <= maxDan; ++i) {
+				document.write('<th scope="col" style="padding:20px">' + i + ' 단</th>');
+			}
+		})();
+		document.write('</tr>');
+		document.write('</thead>');
+		document.write('<tbody>');
+		document.write('<tr>');
+		(function() {
+			for (let i = minDan; i <= maxDan; ++i) {
+				document.write('<td style="padding:20px 0">');
+				for (let j = 1; j <= 9; ++j) {
+					document.write(i + '*' + j + '=' + i * j + '<br>');
+				}
+				document.write('</td>');
+			}
+		})();
+		document.write('</tr>');
+		document.write('</tbody>');
+		document.write('</table>');
+	</script>
+</body>
+</html>

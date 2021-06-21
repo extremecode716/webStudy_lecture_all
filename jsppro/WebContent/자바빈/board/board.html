@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="board.js"></script>
+
+<script>
+// 	$(document).ready(function() {
+// 		$("form").submit(function() {
+// 			if ($("#writer").val() == "") {
+// 				alert("작성자명을 입력하세요");
+// 				$("#writer").focus();
+// 				return false;
+// 			}
+// 			if ($("#subject").val() == "") {
+// 				alert("제목을 입력하세요");
+// 				$("#subject").focus();
+// 				return false;
+// 			}
+// 			if ($("#content").val() == "") {
+// 				alert("내용을 입력하세요");
+// 				$("#content").focus();
+// 				return false;
+// 			}
+// 		});
+// 	});
+</script>
+</head>
+<body>
+	<form method=post action="board.jsp">
+		<table border=1 align=center>
+			<caption>게시판</caption>
+			<tr>
+				<td>작성자</td>
+				<td><input type=text size=20 id="writer" name="writer"></td>
+			</tr>
+			<tr>
+				<td>제목</td>
+				<td><input type=tex size=50 id="subject" name="subject"></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea rows="10" cols="50" id="content" name="content"></textarea></td>
+			</tr>
+			<tr>
+				<td>파일첨부</td>
+				<td><input type=file></td>
+			</tr>
+			<tr>
+				<td colspan=2 align=center>
+				<input type=submit value="글작성">
+					<input type=reset value="취소"></td>
+			</tr>
+		</table>
+	</form>
+
+
+
+
+
+</body>
+</html>

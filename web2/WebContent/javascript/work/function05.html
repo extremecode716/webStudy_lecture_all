@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function result(s){
+		alert(s);
+	}
+</script>
+</head>
+<body>
+<script>
+	var n1 = Number(prompt("정수1을 입력하세요?",""));
+	var n2 = Number(prompt("정수2를 입력하세요?",""));
+</script>
+
+<form>
+	<input type="button" value="덧셈" onClick="result(n1+n2)">
+	<input type="button" value="뺄셈" onClick="result(n1-n2)">
+	<input type="button" value="곱셈" onClick="result(n1*n2)">
+	<input type="button" value="나눗셈" onClick="result(n1/n2)">
+</form>
+
+</body>
+</html>

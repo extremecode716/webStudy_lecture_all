@@ -1,0 +1,20 @@
+<Context> 
+  <Resource name="jdbc/orcl" 
+   auth="Container"
+   type="javax.sql.DataSource" 
+   username="totoro" 
+   password="totoro123"
+   driverClassName="oracle.jdbc.driver.OracleDriver"
+   factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+   url="jdbc:oracle:thin:@localhost:1521:xe"
+   maxActive="500"  
+   maxIdle="100"/>  
+</Context>
+
+<!--  p423 참조
+ maxActive="500"  컨넥션풀이 관리하는 컨넥션의 최대 갯수
+		          (기본값 : 8)
+ maxIdle="100" 	  컨넥션풀이 관리하는 최대 유휴 갯수(기본값 : 8)          
+-->
+
+

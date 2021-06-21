@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_Lotto</title>
+</head>
+<body>
+	<!-- 	과제.
+		1. Math.random() 을 이용해서 1~45 사이의 난수를 6개            
+		   추출 하는 프로그램을 작성하세요.
+
+		  (조건 1.중복 되지 않는 값을 구해야함.
+		      2.구해진 값을 오름차순으로 정렬해서 출력) 
+	-->
+	<!-- Author: ExtremeCode  -->
+	<form>
+		<input type="button" id="btn-lotto" value="로또 추첨" />
+		<input type="text" id="text-lotto-result" placeholder="추첨번호" readonly />
+	</form>
+	<script>
+		window.onload = function() {
+			var Lotto = (function() {
+				function Lotto() {
+					this.btnLotto = document.getElementById('btn-lotto');
+					this.textLottoResult = document
+							.getElementById('text-lotto-result');
+					this.arrLotto = new Array();
+					this.count = 0;
+				}
+
+				Lotto.prototype.btnLottoEvent = function() {
+					this.btnLotto.disabled = true;
+					this.arrLotto.length = 0;
+					this.count = 0;
+					this.textLottoResult.value = '로또 번호 생성중~';
+
+					setTimeout(this.generateLottoNumber.bind(this), 1000);
+				};
+
+				Lotto.prototype.generateLottoNumber = function() {
+					if (this.count >= 6) {
+						this.sortLottoNumbers();
+						return;
+					}
+
+					var bDuplicate;
+					do {
+						bDuplicate = false;
+						this.arrLotto[this.count] = Math
+								.ceil(Math.random() * 45);
+
+						for (var j = 0; j < this.count; ++j) {
+							if (this.arrLotto[this.count] === this.arrLotto[j]) {
+								bDuplicate = true;
+								break;
+							}
+						}
+					} while (bDuplicate);
+
+					++this.count;
+					this.textLottoResult.value = this.arrLotto.join(',');
+
+					setTimeout(this.generateLottoNumber.bind(this), 1000);
+				};
+
+				Lotto.prototype.sortLottoNumbers = function() {
+					this.arrLotto.sort(function(a, b) {
+						return a - b;
+					});
+
+					this.textLottoResult.value = this.arrLotto.join(',');
+					this.btnLotto.disabled = false;
+				};
+
+				Lotto.prototype.addEvent = function() {
+					if (this.btnLotto.addEventListener) {
+						this.btnLotto.addEventListener('click',
+								this.btnLottoEvent.bind(this));
+					} else if (this.btnLotto.attachEvent) {
+						this.btnLotto.attachEvent('onClick', this.btnLottoEvent
+								.bind(this));
+					}
+				};
+
+				return Lotto;
+			}());
+
+			var lotto = new Lotto();
+			lotto.addEvent();
+		}
+	</script>
+</body>
+</html>

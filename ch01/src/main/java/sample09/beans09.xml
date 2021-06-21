@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="mb" class="sample09.MessageBeanImpl">
+		<property name="name" value="홍길동"></property>
+		<property name="greet" value="Hello !"></property>
+		<property name="output" ref="out"></property>
+	</bean>
+	<bean id="out" class="sample09.FileOutputer">
+		<property name="fileName" value="test.txt"></property>
+	</bean>
+	
+</beans>

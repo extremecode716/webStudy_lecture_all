@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인 폼</title>
+<script>
+function check() {
+	var id = document.getElementById("id");
+	var passwd = document.getElementById("passwd");
+	if (id.value == "") {
+		alert("ID를 입력 하세요.");
+		id.focus();
+		return false;
+	}
+	if(passwd.value==""){
+		alert("비밀번호를 입력하세요.");
+		passwd.focus();
+		return false;
+	}
+}
+</script>
+
+
+</head>
+<body>
+
+	<!-- method=전송방식 action=값을 전달받아서 처리해줄 파일 -->
+	<form method="post" action="login.jsp" onSubmit="return check()">
+		<table border=1 width=350 align=center>
+			<caption>로그인</caption>
+			<tr>
+				<td>ID</td>
+				<!-- jsp에서 name값은 변수 역할을 한다. -->
+				<!-- javascript에서 id값으로 input을 구별하며, label for은 id값과 매칭된다. -->
+				<!-- required은 HTML5에서 지원해주는 기능으로 값을 입력받아야지 전송될 수 있게 해주는 기능 -->
+				<td><input type=text id="id" name="id" autofocus="autofocus"></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" id="passwd" name="passwd"></td>
+			</tr>
+			<tr>
+				<td colspan=2 align=center>
+					<!-- submit은 전송기능을 하는 버튼(action=경로로 값을 전달)  --> <input
+					type="submit" value="로그인"> <!-- reset은 입력한 값들을 모두 지워주는 기능(초기화) -->
+					<input type="reset" value="취소">
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

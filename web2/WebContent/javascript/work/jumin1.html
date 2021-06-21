@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>주민등록번호 검사</title>
+<meta charset="utf-8">
+<script language="JavaScript">
+	function move() {
+		if (document.myform.jumin1.value.length == 6) {
+			document.myform.jumin2.focus();
+		}
+	}
+
+	function checkInput() {
+		if (document.myform.jumin1.value == '') {
+			alert("주민등록번호를 앞자리를 입력하세요!");
+			myform.jumin1.focus();
+			return;
+		}
+		if (document.myform.jumin2.value == '') {
+			alert("주민등록번호를 뒷자리를 입력하세요!");
+			myform.jumin2.focus();
+			return;
+		}
+		if (document.myform.jumin1.value.length != 6) {
+			alert("주민등록번호의 앞자릿수가 맞지 않습니다.");
+			myform.jumin1.focus();
+			return;
+		}
+		if (document.myform.jumin2.value.length != 7) {
+			alert("주민등록번호의 뒷자릿수가 맞지 않습니다.");
+			myform.jumin2.focus();
+			return;
+		}
+		if (!juminCheck(myform.jumin1.value + myform.jumin2.value)) {
+			alert("주민등록번호가 잘못되었습니다.");
+			myform.jumin1.focus();
+			return;
+		}
+		alert("올바른 주민번호 입니다.");
+		document.myform.submit();
+	}
+
+	function juminCheck(jumin) {
+		//jumin = "8010101234567";
+		var total = 0;
+		var total2;
+		total += parseInt(jumin.substr(0, 1)) * 2;
+		total += parseInt(jumin.substr(1, 1)) * 3;
+		total += parseInt(jumin.substr(2, 1)) * 4;
+		total += parseInt(jumin.substr(3, 1)) * 5;
+		total += parseInt(jumin.substr(4, 1)) * 6;
+		total += parseInt(jumin.substr(5, 1)) * 7;
+		total += parseInt(jumin.substr(6, 1)) * 8;
+		total += parseInt(jumin.substr(7, 1)) * 9;
+		total += parseInt(jumin.substr(8, 1)) * 2;
+		total += parseInt(jumin.substr(9, 1)) * 3;
+		total += parseInt(jumin.substr(10, 1)) * 4;
+		total += parseInt(jumin.substr(11, 1)) * 5;
+
+		total %= 11;// total = total % 11;
+		total2 = 11 - total;
+		if (total2 > 9)
+			total2 = total2 % 10;
+
+		if (total2 != parseInt(jumin.substr(12, 1))) {
+			return (false);
+		} else {
+			return (true);
+		}
+	}
+</script>
+</head>
+
+<body onload='document.myform.jumin1.focus()'>
+	<form name='myform' method='post' action='member_join.jsp'>
+		<table border=0 width='660' align='center'>
+			<tr>
+				<td width=140>* 주민등록번호</td>
+				<td><input type='text' name='jumin1' size=6 maxlength=6
+					onkeyup='move()'> - <input type='text' name='jumin2' size=7
+					maxlength=7> <input type='button' value="등록"
+					onclick='checkInput()'> <input type='reset' value="취소">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

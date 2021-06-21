@@ -1,0 +1,10 @@
+* SQL문 실행 Method
+
+SQL문			               Method
+-----------------------------------------------------------------------
+select       -     ResultSet                     executeQuery()
+
+
+insert
+update       -     int	        	   executeUpdate()
+delete

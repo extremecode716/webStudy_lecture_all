@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LikeItDto">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="liResult" type="LikeItDto">
+		<result property="memberId" column="memberId" />
+		<result property="gservNo" column="gservNo" />
+	</resultMap>
+
+
+	<insert id="inLikeIt" parameterType="LikeItDto">
+		insert into likeit values(NVL('${memberId}',likeit_seq.nextval),${gservNo})
+	</insert>
+	<delete id="delLikeIt" parameterType="LikeItDto">
+		delete likeit 
+		where memberId='${memberId}' 
+		  and gServNo = ${gservNo}
+	</delete>
+</mapper>

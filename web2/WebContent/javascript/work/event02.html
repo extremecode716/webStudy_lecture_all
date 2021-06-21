@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+방법2. 이벤트 처리방식 : property 방식
+           이벤트 타겟이 되는 객체의 프로퍼티에 이벤트를 등록해서 처리하는 방식
+-->
+
+	<input type="button" id="btn" name="hi" value="확인">
+
+	<script>
+		// getElementById()메소드로 id값이 'btn'인 태그를 구해옴
+		var btn = document.getElementById('btn');
+		
+		// 이벤트 타겟 객체 속성에 이벤트 핸들러 연결
+		btn.onclick = function() {
+			alert("Hello World");
+		}
+	</script>
+
+</body>
+</html>

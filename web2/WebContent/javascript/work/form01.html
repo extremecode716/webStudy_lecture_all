@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function check(){
+		var id = document.getElementById("id");
+		var name = document.getElementById("name");
+		var myform = document.getElementById("myform");
+		
+		if(id.value == ""){
+			alert("ID를 입력하세요.");
+			return false;
+		}
+		if(name.value == ""){
+			alert("이름을 입력하세요.");
+			return false;
+		}
+		myform.submit();	// send.jsp 페이지로 전송
+	}
+</script>
+</head>
+<body>
+<form id="myform" method="post" action="send.jsp">
+	ID : <input type=text id="id"><br>
+	이름 : <input type=text id="name"> <br>	
+	<input type="button" value="전송" onClick="check()">
+</form>
+</body>
+</html>

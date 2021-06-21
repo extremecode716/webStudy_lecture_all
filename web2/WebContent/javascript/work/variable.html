@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 변수 : 메모리에 데이터를 저장하는 기억공간 
+         형식 : var 변수명 = 값(데이터);
+-->
+
+<script>
+	//1. 숫자 데이터
+	var num = 10;
+	var pi = 3.14;
+	document.write("num=",num+"<br>");
+	document.write("pi="+pi+"<br>");
+	document.write(typeof(num)+"<br>");		// number
+	document.write(typeof(pi)+"<br>");
+
+	//2. 문자 데이터
+	var str1 = "자바스크립트";
+	var str2 = 'javascript';
+	document.write("str1="+str1+"<br>");
+	document.write("str2="+str2+"<br>");
+	document.write(typeof(str1)+"<br>");	// string	
+	document.write(typeof(str2)+"<br>");
+	
+	//3. 논리 데이터
+	var b1 = true;
+	var b2 = false;
+	document.write("b1="+b1+"<br>");
+	document.write("b2="+b2+"<br>");
+	document.write(typeof(b1)+"<br>");		// boolean
+	document.write(typeof(b2)+"<br>");
+	
+	//4. null데이터
+	var str = null;
+	document.write("str="+str+"<br>"); 		// null
+	document.write(typeof(str)+"<br>");     // object
+	
+	var result = 30;
+	document.write(typeof(result)+"<br>"); 
+	var result = "자바스크립트";
+	document.write("result="+result);		// result=자바스크립트
+	document.write(typeof(result)+"<br>"); 
+
+</script>
+
+</body>
+</html>

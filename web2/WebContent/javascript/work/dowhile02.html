@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script>
+	
+		do{	// s = "10+20"
+			var s = prompt("수식을 입력하세요?(종료하려면 0을 누르세요)","");
+			
+			if(s == 0)  break;
+			
+			// eval("10+20")  --> 30
+			document.write(s+"의 결과는 "+eval(s));
+			
+		}while(true);	// 무한루프
+	
+	</script>
+
+</body>
+</html>

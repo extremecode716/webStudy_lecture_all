@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+.bar {
+		width: 250px;
+		height:100%;
+		background-color: #232323;
+		box-sizing: border-box;
+		display: inline-block;
+		position: fixed;
+		
+	}
+	
+	li {
+		list-style: none;
+	}
+	
+	.tap1 {
+		text-decoration: none;
+		color:white;
+	}

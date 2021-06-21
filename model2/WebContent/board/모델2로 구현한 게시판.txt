@@ -1,0 +1,62 @@
+* 모델2로 구현한 게시판
+
+model2 - src - controller - BoardFrontController.java (Controller)
+
+	        model - BoardBean.java(DTO)
+
+	        dao - BoardDAO.java(DAO)
+
+	        service -   Action.java(인터페이스)		       		       
+		           ActionForward.java				       	       
+		           BoardAddAction.java(글작성)
+		           BoardListAction.java(글목록)
+		           BoardDetailAction.java(글내용)
+		           BoardReplyAction.java(댓글폼)
+		           BoardReply.java(댓글)
+		           BoardModifyAction.java(글수정폼)
+		           BoardModify.java(글수정)
+		           BoardDeleteAction.java(글삭제폼)  (x)
+		           BoardDelete.java(글삭제)     	
+
+
+	WebContent - board - qna_board_write.jsp(글작성 폼)
+			     qna_board_list.jsp(글목록 출력)
+			     qna_board_view.jsp(글내용 출력)
+			     qna_board_reply.jsp(답변글)
+			     qna_board_modify.jsp(글수정)
+			     qna_board_delete.jsp(글삭제)
+			     file_down.jsp
+
+
+	                     boardupload (자료실 임시폴더)
+
+		      META-INF - context.xml(컨넥션풀 환경설정파일)
+
+		      WEB-INF - lib - jstl-1.2.jar
+				 cos.jar
+ 				 ojdbc6.jar
+
+			      - web.xml(프로젝트의 환경설정파일)
+
+
+create table model2(
+	board_num number,
+	board_name varchar2(20),
+	board_pass varchar2(15),
+	board_subject varchar2(50),
+	board_content varchar2(2000),
+	board_file varchar2(50),
+	board_re_ref number,
+	board_re_lev number,
+	board_re_seq number,
+	board_readcount number,
+	board_date timestamp,
+	primary key(board_num)
+);
+
+create sequence model2_seq
+start with 1
+increment by 1
+nocache;
+
+

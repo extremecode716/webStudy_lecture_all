@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>window 객체</title>
+<script>
+	var w1, w2;	// 전역 변수
+	function winopen(){
+		// open("팝업창에 실행될 문서명","윈도우 이름","옵션");
+		w1=window.open("date01.html","mywin01","width=200,height=400");	
+		w2=window.open("calculator.html","mywin02","width=200,height=400");	
+	}
+	function winclose(){
+		w1.close();
+		w2.close();
+	}	
+</script>
+</head>
+<body>
+
+<input type="button" value="창열기" onClick="winopen()">
+<input type="button" value="창닫기" onClick="winclose()">
+
+</body>
+</html>

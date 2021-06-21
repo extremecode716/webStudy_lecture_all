@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script>
+	// switch ~ case문
+	// 0 ~ 100점 사이의 점수를 입력 받아서 해당 학점으로 출력하는 프로그램을 
+	// switch case문으로 작성하세요?
+			
+		var s = prompt("0~100점 사이의 점수를 입력하세요?","");
+	
+		// parseInt("9.5")  --> 9
+		switch(parseInt(s/10)){	
+			case 10:
+			case 9: alert("A학점");
+					break;
+			case 8: alert("B학점");
+					break;
+			case 7: alert("C학점");
+					break;
+			case 6: alert("D학점");
+					break;
+			default : alert("F학점");
+		}
+	
+	</script>
+
+</body>
+</html>

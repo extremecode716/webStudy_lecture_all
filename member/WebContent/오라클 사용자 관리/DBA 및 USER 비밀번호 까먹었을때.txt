@@ -1,0 +1,23 @@
+* DBA 및 USER 비밀번호 까먹었을때 
+
+sqlplus /"as sysdba"
+접속 후 
+alter user  ID  identified by  PW; 
+ex) alter user sys identified by ora123;
+
+
+cf.
+오라클 sys, system암호 까먹었을때 
+명령 프롬프트에서 다음을 실행합니다.
+ 
+C:>sqlplus "/as sysdba"
+SQL> show user
+USER is "SYS"
+ 
+암호를 원하는 대로 설정합니다.
+ 
+SQL> alter user sys identified by 암호;
+SQL> alter user system identified by 암호;
+
+
+

@@ -1,0 +1,16 @@
+* 표현언어(Expression Language:EL)
+
+String str = "jsp";
+
+표현식 태그  : <%=  str%>
+	       <%= article.getId()%>
+	       <%=session.getAttribute("test")%>
+	       <%=request.getParameter("name")%>
+	       <%=request.getParameterValues("choice")%>
+
+
+표현언어(EL) : ${str}
+	       ${article.id}
+	       ${sessionScope.test}
+	       ${param.name}
+	       ${paramValues.choice}

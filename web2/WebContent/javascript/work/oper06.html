@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+	// 키보드로 정수 2개를 입력 받아서 최대값과 최소값을 출력하는 프로그램을 작성하세요?
+
+	var n1 = prompt("정수1을 입력하세요?","");	// string	
+	var n2 = prompt("정수2를 입력하세요?","");	// string
+	var max, min;
+	
+	// Number() : 문자를 숫자로 변환
+	var n1 = Number(n1); //  Number("30")    --->  30
+	var n2 = Number(n2); //  Number("3.14")  --->  3.14
+	
+	if(n1 > n2){	     // 문자형 변수끼리 비교 연산을  할 수 있다.
+		max = n1;
+		min = n2;
+	}else{
+		max = n2;
+		min = n1;
+	}
+	
+	document.write("n1="+typeof(n1)+"<br>");	// number
+	document.write("n2="+typeof(n2)+"<br>");    // number
+	
+	document.write("max="+max+"<br>");
+	document.write("min="+min+"<br>");
+			
+</script>
+
+</body>
+</html>

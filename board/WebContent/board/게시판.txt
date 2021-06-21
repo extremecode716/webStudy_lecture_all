@@ -1,0 +1,52 @@
+* 게시판 
+
+ 1. 액션태그
+     <jsp:useBean....>
+     <jsp:setProperty....>
+
+  2. Connection Pool
+
+  3. DTO(자바빈), DAO(DB연동)
+
+  4. 페이징 처리(inline View)
+
+
+ board - src - board -   BoardDataBean.java  (DTO클래스)
+		      BoardDBBean.java    (DAO클래스)	   
+
+
+            WebContent - board - writeForm.jsp
+			    	 writePro.jsp
+			    	 list.jsp
+			    	 content.jsp
+			    	 updateForm.jsp
+			    	 updatePro.jsp
+			    	 deleteForm.jsp
+			    	 deletePro.jsp
+
+		        META-INF - context.xml
+			           (Connection Pool 환경설정파일)
+
+			    WEB-INF - lib - ojdbc6.jar
+
+                                      web.xml(프로젝트의 환경설정 파일)
+
+
+
+   create table board0( 
+		num number primary key,
+                	writer varchar2(20) not null,
+	    	email varchar2(30),
+                	subject varchar2(50) not null,
+                	passwd varchar2(20) not null,
+		reg_date timestamp not null,
+		readcount number default 0,			
+		content varchar2(2000) not null,
+		ip varchar2(20) not null );
+
+
+   create sequence board0_seq
+	start with 1
+	increment by 1
+	nocache;
+

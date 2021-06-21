@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="deptns">
+	
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="deptResult"    type="dept">
+		<result property="deptno" column="deptno" />
+		<result property="dname"  column="dname" />
+		<result property="loc"	  column="loc" />
+	</resultMap>
+	
+	<select id="list" resultMap="deptResult">
+		select * from dept order by deptno
+	</select>
+	
+	<select id="select" parameterType="int" resultType="dept">
+		select * from dept where deptno=#{deptno}
+	</select>
+	
+	<update id="update" parameterType="dept">
+		update dept set dname=#{dname},loc=#{loc} where deptno=#{deptno}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from dept where deptno=#{deptno}
+	</delete>
+	
+</mapper>

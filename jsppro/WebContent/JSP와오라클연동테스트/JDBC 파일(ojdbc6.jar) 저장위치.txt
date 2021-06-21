@@ -1,0 +1,9 @@
+* JDBC 파일(ojdbc6.jar) 저장위치
+
+ 1. C:\Program Files\Java\jre8\lib\ext  : 자바와 
+    JSP에서 모두 공유 가능
+ 
+ 2. C:\Tomcat 9.0\lib : JSP에서 사용가능
+
+ 3. C:\workspace\jsppro\WebContent\WEB-INF\lib
+     : JSP에서 사용가능(Export시 같이 저장됨)

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context" xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd"
+>
+
+	<!-- Data Source -->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource"> <property name="driverClass" value="oracle.jdbc.driver.OracleDriver" /> <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" 
+		/> <property name="username" value="spring" /> <property name="password" value="spring123" /> </bean> -->
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="spring" />
+		<property name="password" value="spring123" />
+	</bean>
+
+
+	<!-- 스프링 jdbc 즉 스프링으로 oracle 디비 연결 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:util/SqlMapConfig.xml" />
+		<property name="mapperLocations" value="classpath:sql/*.xml" />
+	</bean>
+	<!-- 이 설정은 com.naver.mappers 패키지 아래와 그 하위 패키지(**)를 모두 검색해서 마이바티스 매퍼 XML파일을 모두 로드할 것이다. classpath 는 다이나믹 웹프로젝트에서 build/classes/ 경로를 뜻한다. -->
+
+	<!-- <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"> -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean><!-- mybatis ORM DB 연동 프레임웍 연결 -->
+
+
+	<!-- 트랜잭션 매니저 설정(트랜잭션 처리를 위한 객체를 생성) -->
+	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> <property name="dataSource" ref="dataSource"/> </bean> 트랜잭션 어노테이션 인식 <tx:annotation-driven 
+		transaction-manager="transactionManager"/> <tx:annotation-driven/> -->
+
+	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> <property name="dataSource" ref="dataSource"/> </bean> <tx:annotation-driven /> -->
+
+</beans>
+

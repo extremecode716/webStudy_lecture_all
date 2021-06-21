@@ -1,0 +1,10 @@
+1. 테이블에 레코드가 입력된 순서대로 rownum값이 입력됨 
+   select rownum, ename, sal from emp;
+
+2. rownum은 바뀌지 않음. 
+   select rownum, ename, sal from emp order by sal desc;
+
+3. 급여를 많이 받는 5명만 출력 
+   select rownum, ename, sal from (
+   select ename, sal from emp order by sal desc)
+              where rownum <= 5;

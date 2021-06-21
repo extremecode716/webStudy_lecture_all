@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배열</title>
+</head>
+<body>
+
+<script>
+// 방법1.
+	var a1 = new Array();
+	a1[0] = 80;
+	a1[1] = 90;
+	a1[2] = 70;
+	
+	for(var i=0; i<a1.length; i++){
+		document.write(a1[i]+"  ")
+	}
+	document.write("<br>");
+	
+// 방법2.
+	var a2 = new Array(80,90,70);
+	
+	for(var i=0; i<a2.length; i++){
+		document.write(a2[i]+"  ")
+	}
+	document.write("<br>");
+	
+// 방법3.
+	var a3 = [80, 90, 70];
+
+	for(var i=0; i<a3.length; i++){
+		document.write(a3[i]+"  ")
+	}
+
+</script>
+
+</body>
+</html>

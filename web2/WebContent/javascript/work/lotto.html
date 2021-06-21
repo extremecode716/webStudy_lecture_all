@@ -1,0 +1,50 @@
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title> lotto </title>
+  <script>
+
+function find(){
+	var lotto = new Array();
+
+	for(var i=0; i<6; i++){
+		// 1~45 난수 발생 부분 
+//		lotto[0]=10; lotto[1]=10; 
+		lotto[i] = Math.floor(Math.random()*45)+1;
+
+		//중복 검사 부분
+		for(var j=0; j<i; j++){
+			if(lotto[i] == lotto[j]){
+				i--;
+				break;
+			}
+		}
+	}
+//	lotto.sort();
+
+// 정렬방식 : 오름차순 (1,2,3....)
+   lotto.sort(function(a,b){
+   return a-b;
+   }); 
+
+// 정렬방식 : 내림차순 (10,9,8...)
+//  lotto.sort(function(a,b){
+//   return b-a;
+//  });
+
+    document.write(lotto);
+
+//	for(var k=0; k<6; k++){
+//		document.write(lotto[k]+"  ");
+//	}
+
+}
+  </script>
+ </head>
+
+ <body>
+ <form>
+	<input type=button value="추첨하기" onClick="find()">
+ </form> 
+ </body>
+</html>

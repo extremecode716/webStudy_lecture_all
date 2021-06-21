@@ -1,0 +1,83 @@
+﻿* pom.xml 파일에 의존 라이버러리 추가
+
+http://mvnrepository.com
+
+
+ex)
+	springframework    <--- search
+
+
+
+       Spring Core   클릭
+
+       4.0.5.RELEASE   버전 클릭
+
+
+      아래쪽의 검색 결과를 pom.xml 파일에 복사해서 사용한다.
+
+      <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-core</artifactId>
+	<version>4.0.5.RELEASE</version>
+      </dependency>
+
+  
+     
+       
+만약 오라클용 JDBC Driver를 추가하기 위해서는 기존 중앙저장소에서
+
+제공하지 않을 경우에는 다른 repository를 pom.xml 파일에 추가해야 한다.
+
+ex)  pom.xml
+
+	<!-- 오라클 repository -->
+	<repositories>
+		<repository>
+			<id>codelds</id>
+			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<!-- 오라클 JDBC Library -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+		</dependency>
+
+		<!-- iBatis -->
+		<dependency>
+			<groupId>org.apache.ibatis</groupId>
+			<artifactId>ibatis-sqlmap</artifactId>
+			<version>2.3.4.726</version>
+		</dependency>
+
+		<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.7</version>
+		</dependency>
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jstl-impl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<!-- 파일 업로드 라이브러리 추가 : cos.jar -->
+		<dependency>
+			<groupId>servlets.com</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
+		</dependency>		
+		
+	</dependencies>

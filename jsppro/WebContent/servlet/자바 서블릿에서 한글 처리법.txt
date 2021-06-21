@@ -1,0 +1,41 @@
+* 자바 서블릿에서 한글 처리법
+
+I.  get방식으로 전송되는 경우
+
+   방법1. String str = request.getParameter("name");
+	  new String(str.getBytes("8859_1"), "euc-kr"); 로 처리
+
+   방법2. server.xml 파일에 등록 하는 방법
+
+             <Connector URIEncoding="euc-kr"   />
+
+	 --> URIEncoding="euc-kr"  설정을 추가함.
+
+
+    cf. 위의 방법중 1가지만 사용해야함.
+        (euc-kr로 인코딩하는 경우에는 2가지 방법중 1가지를 직접
+         인코딩 처리해야됨)
+
+
+        get방식으로 한글값이 전송되는 경우에 Tomcat 8 이상에서는 
+        Tomcat이 자동으로 utf-8로 인코딩을 처리함
+
+
+
+
+II.  post방식으로 전송되는 경우
+
+      방법1.
+	     new String(str.getBytes("8859_1"), "utf-8"); 로 처리
+
+      방법2. request.setCharacterEncoding("utf-8"); 
+
+    cf. 위의 방법중 1가지만 사용해야함.
+
+        방법2를 사용할 때는  파일 윗 부분에
+
+        request.setCharacterEncoding("utf-8");   
+
+        코드를 추가 해야함.
+       
+

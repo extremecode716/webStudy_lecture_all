@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberDto">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="MemberResult" type="MemberDto">
+    <result property="memberId" column="memberId"/>
+    <result property="nickName" column="nickName"/>
+    <result property="pw" column="pw"/>
+    <result property="tel" column="tel"/>
+    <result property="addr" column="addr"/>
+    <result property="mname" column="mname"/>
+    <result property="regidate" column="regidate"/>
+    <result property="mpoint" column="mpoint"/>
+    <result property="authority" column="authority"/>
+    <result property="mimg" column="mimg"/>
+  </resultMap>
+  
+
+  <select id="searchMember" parameterType="java.lang.String" resultMap="MemberResult">
+  		Select *
+  		  From member
+  		Where memberId Like '%${value}%'
+  		  OR  nickName Like '%${value}%'
+   		  OR  mName Like '%${value}%'
+  </select>
+   <select id="selMember" parameterType="java.lang.String" resultMap="MemberResult">
+   		select * from member where memberId='${value}'
+   </select>
+   
+   	<select id="totalMember" resultType="int">
+		select count(*) from member
+	</select>
+	
+	<select id="selMemberList" parameterType="PagingDto" resultMap="MemberResult">
+	   select * from
+		    (select rownum rn, a.* from (select * from member
+		      order by MEMBERID) a) where
+		rn between #{start} and #{end}
+	</select>
+	
+ 	<select id="changePw" parameterType="MemberDto" resultType="int">
+	      Update member 
+	         Set pw=#{pw} 
+	       Where memberId='${memberId}'
+	</select>	
+ 	
+ 	<select id="checkPw" parameterType="MemberDto" resultType="int">
+ 		select count(*) from member where memberId='${memberId}' and pw='${pw}'
+ 	</select>
+	<update id="upPoint" parameterType="MemberDto">
+		update member set mPoint =${mpoint} where memberId ='${memberId}'
+	</update>  
+	
+	<delete id="delMember" parameterType="java.lang.String" >
+		delete member where memberId='${value}'
+	</delete> 
+	
+	<update id="upMember" parameterType="MemberDto">
+		update member 
+		   set nickName = '${nickName}',
+		            tel = '${tel}',
+		           addr = '${addr}',
+		           mImg = '${mimg}',
+		      authority = '${authority}'
+		 where memberId = '${memberId}'	     
+	</update>
+	
+	<insert id="inMember" parameterType="MemberDto"  >
+	 	 insert into member values (#{memberId},#{nickName},#{pw},#{tel},#{addr},#{mname},sysdate,0,'1',
+	 	 <if test="mimg !=null">#{mimg}</if><if test="mimg ==null">null</if>)
+	</insert>
+	<select id="fs" parameterType="java.lang.String" resultType="java.lang.String">
+		select count(*)from member where memberId=#{memberId}
+	</select>
+		
+	<select id="checkpsw"  parameterType="java.util.Map" resultType="int">
+		select count(*) from member where memberId=#{memberId} and pw=#{pw}
+	</select>
+		<select id="select_email" parameterType="java.lang.String" resultType="java.lang.String">
+		select u_email from member where memberId=#{memberId}
+	</select>
+	
+	<select id="selManager" resultMap="MemberResult">
+		Select * 
+		  From member
+		 Where authority = '3'
+	</select>
+	
+	<insert id="inMemberKakao" parameterType="MemberDto" >
+	 	 insert into member values (#{memberId},#{nickName},null,null,null,#{nickName},sysdate,0,'1',#{mimg})
+	</insert>
+	
+</mapper>

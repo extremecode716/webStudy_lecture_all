@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>스트링 객체</title>
+</head>
+<body>
+<script>
+
+	var name = prompt("당신의 영문 이름은?","");
+	var upper = name.toUpperCase();
+	document.write(upper+"<br>");
+	
+	var num = prompt("당신의 연락처는?","");	// num="01012345678"
+										// num.length=11
+	var result = num.substring(0, num.length-4)+"****";
+	document.write(result+"<br>");
+
+</script>
+
+</body>
+</html>

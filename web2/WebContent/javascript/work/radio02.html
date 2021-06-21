@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>radio</title>
+<script>
+	function check(){
+		var s1 = document.getElementById("s1");
+		var s2 = document.getElementById("s2");
+		var s3 = document.getElementById("s3");
+		var s4 = document.getElementById("s4");
+		
+		if(s1.checked) alert(s1.value+"를 좋아하시는군요")
+		if(s2.checked) alert(s2.value+"를 좋아하시는군요")
+		if(s3.checked) alert(s3.value+"를 좋아하시는군요")
+		if(s4.checked) alert(s4.value+"를 좋아하시는군요")
+	}
+</script>
+</head>
+<body>
+<form>
+	<h1>좋아하는 운동은?</h1>
+	<input type=radio id="s1" name="sports" value="축구">축구
+	<input type=radio id="s2" name="sports" value="야구">야구
+	<input type=radio id="s3" name="sports" value="농구">농구
+	<input type=radio id="s4" name="sports" value="배구">배구<br>
+	<input type="button" value="확인" onClick="check()">
+	<input type="reset" value="취소">
+</form>
+
+</body>
+</html>

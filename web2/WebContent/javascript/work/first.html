@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- html 주석 -->
+<!-- 자바 스크립트 주석 
+1. //          : 단일행 주석
+2. /*   ~   */ : 다중행 주석
+-->
+<!--   
+    window (최상위 객체):생략가능
+   document     location     history     screen     navigator
+   form    image   
+   button, submit, reset, radio, checkbox,select,  
+-->
+<script>
+	// 내장객체(document) / write 메소드: 브라우저에 결과를 메세지를 출력해주는 메소드 / 문자열:외따옴표o,쌍따옴표o
+	// 문장의 끝은 세미클론을 써도되고 안써도 된다.
+	// 최상위 내장객체(window) 생략가능.
+	// write는 자체적으로 줄을 바꿔주는 기능이 없다.그래서 <br>을 붙여줌.
+	// javascript는 에러찾기가 굉장히 힘듦. 에러가 나면 뒤에 실행이 안됨. 에러보는법: F12->Console탭->error 확인(정확하진 않음)
+	document.write('처음 작성하는 자바스크립트1<br>') 
+	window.document.write("처음 작성하는 자바스크립트2"+"<br>")
+	window.document.write("처음 작성하는 자바스크립트3"+"<br>")
+</script>
+
+<script type="text/javascript">
+//  단일행 주석
+//	document.write("처음 작성하는 자바스크립트4<br>");
+</script>
+
+<script language="javascript">
+/* 다중행 주석 (Ctrl +  Shift + /)
+   document.write("처음 작성하는 자바스크립트5"); */
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MsgDto">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="MsgResult" type="MsgDto">
+    <result property="msgSender" column="msgSender"/>
+    <result property="msgReceiver" column="msgReceiver"/>
+    <result property="msgSendate" column="msgSendate"/>
+    <result property="msgContent" column="msgContent"/>
+    <result property="msgCheck" column="msgCheck"/>
+    <result property="msgCheckDate" column="msgCheckDate"/>
+    <result property="msgImg" column="msgImg"/>
+    <result property="nickName" column="nickName"/>
+  </resultMap>
+  
+  
+   <insert id="inMsgResv" parameterType="MsgDto">
+     	insert into Message
+     	 values ( (Select memberId
+           			 From guide
+          			Where gno = '${msgSender}') ,'${msgReceiver}',sysdate,'${msgContent}','n',null)
+   </insert>
+   
+   <select id="totalMsg" parameterType="java.lang.String" resultType="int">
+   	 	Select count(*)
+   	 	  From Message
+   	 	 Where msgSender = '${value}'
+   	 	   OR  msgReceiver = '${value}'
+   </select>
+   
+   <select id="selMsg" parameterType="PagingDto" resultMap="MsgResult">
+    	Select * from
+			(Select rownum rn, aa.* 
+			   From (
+						Select rownum rna, msg.*, m.mimg msgImg, m.nickname nickName 
+						  From Message msg, member m 
+            Where <if test="send_receive == 'send'">
+            	   msgsender = '${memberId}'
+              AND  msg.msgReceiver = m.memberId
+            	 </if>
+            	  <if test="send_receive == 'receive'">
+            	  msgReceiver = '${memberId}' 
+              AND msg.msgSender = m.memberId
+                 </if>  
+            Order by msgsendate desc
+    			) aa 
+    	) Where rn between ${start} and ${end}
+   </select>
+   
+   <select id="totalMsgTalk" parameterType="PagingDto" resultType="int">
+   		Select count(*)
+   		  From Message
+   		 Where (    msgSender ='${talker}'
+   		        and msgReceiver = '${memberId}')
+   		   OR  (    msgSender = '${memberId}'
+   		   		and msgReceiver = '${talker}')
+   </select>
+   
+   <select id="selMsgTalk" parameterType="PagingDto" resultMap="MsgResult">
+	   Select * from
+				(Select rownum rn, aa.* 
+				   From (
+							Select rownum rna, msg.*, m.mimg msgImg, m.nickname nickName 
+							  From Message msg, member m 
+	            Where ((    msg.msgSender ='${memberId}'
+	                   and msg.msgReceiver = '${talker}')
+	              or (     msg.msgSender = '${talker}' 
+	                  and  msg.msgReceiver = '${memberId}'))
+	              and msg.msgSender = m.memberId
+	            Order by msgsendate
+	    			) aa 
+	    	) Where rn between ${start} and ${end}       
+   </select>
+   
+   <insert id="inMsgTalk" parameterType="MsgDto">
+   	 	insert into Message
+   	 	 Values ('${msgSender}','${msgReceiver}',sysdate,'${msgContent}','n', null) 
+   </insert>
+   
+   <update id="upMsgCheck" parameterType="PagingDto">
+   		update Message
+   		  Set  msgCheck     = 'y', 
+   		       msgCheckDate = sysdate
+   		Where  msgSender    = '${talker}'
+   		  and  msgReceiver  = '${memberId}' 
+   </update>
+   
+   <select id="getNewMsgCnt" parameterType="java.lang.String" resultType="int">
+   		Select count(*)
+   		 From Message
+   		Where msgReceiver = '${value}'
+   		  and msgCheck = 'n'
+   </select>
+   
+</mapper>

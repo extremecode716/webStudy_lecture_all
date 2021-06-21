@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mymember">
+
+	<!-- 회원가입 -->
+	<insert id="insert" parameterType="member">
+	  insert into member0609 values(#{id},#{passwd},#{name},#{jumin1},#{jumin2},
+	  #{mailid},#{domain},#{tel1},#{tel2},#{tel3},#{phone1},#{phone2},#{phone3},
+	  #{post},#{address},#{gender},#{hobby},#{intro},sysdate)
+	</insert>
+	
+	<!-- ID중복검사, 회원인증 -->
+	<select id="idcheck" parameterType="String" resultType="member">
+	 select * from member0609 where id = #{id}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="member">
+	  update member0609 set name=#{name}, jumin1=#{jumin1}, jumin2=#{jumin2}, 
+	  mailid=#{mailid}, domain=#{domain}, tel1=#{tel1}, tel2=#{tel2}, tel3=#{tel3},
+	  phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, post=#{post}, address=#{address},
+	  gender=#{gender}, hobby=#{hobby}, intro=#{intro} where id = #{id}
+	</update>
+
+	<!-- 회원 삭제 -->
+	<delete id="delete" parameterType="String">
+	  delete from member0609 where id = #{id}
+	</delete> 
+
+</mapper>

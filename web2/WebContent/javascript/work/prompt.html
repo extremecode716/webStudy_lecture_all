@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>prompt 메소드</title>
+</head>
+<body>
+	<script>
+		/* prompt, alert 같은 메소드는 먼저 실행된다.
+			javascript는 절차적으로 실행.
+		 */
+		name = prompt("이름을 입력하세요?", "");
+		document.write("당신의 이름은?" + name);
+		document.write(typeof (name) + "<br>"); // string
+	</script>
+
+	<script>
+		var age = prompt("나이를 입력하세요?", "");
+		if (age >= 20) {
+			document.write("당신은 성인 입니다.");
+		} else {
+			document.write("당신은 미성년자 입니다.");
+		}
+	</script>
+
+</body>
+</html>

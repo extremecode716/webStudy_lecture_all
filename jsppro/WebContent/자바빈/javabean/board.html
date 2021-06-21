@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	$(function(){
+		
+		$("form").submit(function(){
+			if($.trim($("#writer").val())==""){
+				alert("작성자명을 입력하세요");
+				$("#writer").focus();
+				return false;
+			}
+			if($.trim($("#passwd").val())==""){
+				alert("비밀번호를 입력하세요");
+				$("#passwd").focus();
+				return false;
+			}
+			if($.trim($("#subject").val())==""){
+				alert("제목을 입력하세요");
+				$("#subject").focus();
+				return false;
+			}
+			if($.trim($("#content").val())==""){
+				alert("내용을 입력하세요");
+				$("#content").focus();
+				return false;
+			}
+			if($("#content").val().length >= 200){
+				alert("200자 까지만 입력 가능합니다.");				
+				return false;
+			}
+			
+		});		
+		
+	});
+</script>
+</head>
+<body>
+
+<table border=1 align=center width=500>
+<form method="post" action="board.jsp">
+	<caption>글작성</caption>
+	<tr><td>작성자</td>
+		<td><input type=text id="writer" name="writer"></td>
+	</tr>
+	<tr><td>비밀번호</td>
+		<td><input type=password id="passwd" name="passwd"></td>
+	</tr>
+	<tr><td>제목</td>
+		<td><input type=text size=50 id="subject" name="subject"></td>
+	</tr>
+	<tr><td>내용</td>
+		<td><textarea cols=60 rows=10 id="content" name="content"></textarea></td>
+	</tr>
+	<tr><td>파일 첨부</td>
+		<td><input type=file></td>
+	</tr>
+	<tr><td colspan=2 align=center>
+			<input type=submit value="글작성">
+			<input type=reset value="취소">
+		</td>
+	</tr>
+</form>
+</table>
+
+
+</body>
+</html>

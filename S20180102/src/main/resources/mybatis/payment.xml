@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PayDto">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="PayResult" type="PayDto">
+    <result property="payCode" column="payCode"/>
+    <result property="memberId" column="memberId"/>
+    <result property="gservNo" column="gservNo"/>
+    <result property="amount" column="amount"/>
+    <result property="pay_method" column="pay_method"/>
+    <result property="buyer_name" column="buyer_name"/>
+    <result property="buyer_email" column="buyer_email"/>
+    <result property="buyer_tel" column="buyer_tel"/>
+    <result property="buyer_addr" column="buyer_addr"/>
+    <result property="pcomplete" column="pcomplete"/>
+    <result property="gservTitle" column="gservTitle"/>
+    <result property="tourDate" column="tourDate"/>
+  </resultMap>
+  
+   <select id="selOnePay" parameterType="java.lang.String" resultMap="PayResult">
+	  	Select *   
+		  From Payment
+		 Where payCode = '${value}'   
+   </select>
+
+   <select id="selPayList" parameterType="PagingDto" resultMap="PayResult">
+      	select * from (select rownum rn, b.*, a.gServTitle, c.tourDate from payment b, 
+      	gService a, reservation c  where a.gservno=b.GSERVNO and b.paycode=c.paycode 
+      	and b.memberID ='${memberId}'and c.pay_yn='y') where rn between ${start} and ${end}
+   </select>
+   
+   <select id="totalPay" parameterType="java.lang.String" resultType="int">
+   		select count(*) from payment where memberId='${value}'
+   </select>
+   
+   <insert id="inPay" parameterType="PayDto">
+   		insert into payment values (
+   			    '${payCode}',  '${memberId}',      ${gservNo}, 
+   			       ${amount}, '${pay_method}', '${buyer_name}',
+   			'${buyer_email}', '${buyer_tel}', '${buyer_addr}',  '${pcomplete}'
+   		)
+   </insert>
+
+</mapper>

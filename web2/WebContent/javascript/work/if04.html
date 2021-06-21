@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<script>
+	// 중첩 if문
+	
+	var id = "totoro";	// DB에 저장된 ID, 비번
+	var pw = "1234";
+	
+	var user_id = prompt("아이디 입력?","");
+	var user_pw = prompt("비밀번호 입력?","");
+	
+	if(id == user_id){			// 아이디가 일치한 경우
+		if(pw == user_pw){		// 비밀번호 일치
+			alert(user_id+"님 환영합니다.");
+		}else{					// 비밀번호 불일치
+			alert("비밀번호가 일치하지 않습니다.");
+			location.reload();	// 브라우저를 새로고침
+		}		
+	}else{						// 아이디가 일치하지 않는 경우
+		alert("아이디가 일치하지 않습니다.");
+		location.reload();		// 브라우저를 새로고침
+	}
+	
+	</script>
+
+
+</body>
+</html>

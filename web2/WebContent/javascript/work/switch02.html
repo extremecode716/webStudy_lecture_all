@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<script>
+	// switch ~ case
+	
+var site = prompt("네이버, 다음, 네이트, 구글 중 즐겨 사용하는 포털 사이트는?","");
+	
+	switch(site){
+		case "네이버": url ="www.naver.com";
+					  break;
+		case "다음" : url = "www.daum.net";
+					 break;
+		case "네이트" : url = "www.nate.com";
+					   break;
+		case "구글" : url = "www.google.com";
+				     break;
+		default : alert("보기 중에 없는 사이트 입니다.");
+	}
+	
+	if(url){
+		location.href = "http://"+ url;
+//		location.href = "http://www.oracle.com";
+	}
+	
+	</script>
+
+
+
+</body>
+</html>

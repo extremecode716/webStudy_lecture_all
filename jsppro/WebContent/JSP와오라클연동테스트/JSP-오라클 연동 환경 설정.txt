@@ -1,0 +1,67 @@
+* JSP-오라클 연동 환경 설정
+
+1. 오라클용 JDBC Driver 파일을 자바 설치    위치(C:\java\jre\lib\ext)로 
+   복사한다.
+
+   C:\oracle\product\10.2.0\db_1\jdbc\lib\ojdbc6.jar 파일을
+
+   C:\java\jre\lib\ext 로 복사한다
+
+2.  이클립스에서 오라클 데이터베이스 연동 설정
+     이클립스의 Project Explorer 화면에서 JRE System Library에 오늘 마우스 
+     클릭 - Properties - Installed JRE 버튼 클릭 - jre8선택후 Edit 버튼 클릭 -
+     Add External JAR 버튼 클릭후 C:\java\jre\lib\ext\ojdbc6.jar 파일을
+     추가한다. (ojdbc6.jar 파일이 라이버러리에 추가되면 성공~~!!)
+
+3. 이클립스 재 구동
+
+4. 간단한 자바-오라클 연동 파일을 작성한후 테스트 해본다
+
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page import="java.sql.*" %>
+
+<%
+  Connection con=null;
+
+  try{
+
+/***************** My-SQL 연결 설정하는 부분 *****************************/
+//    String driver = "com.mysql.jdbc.Driver";
+
+//    String jdbcUrl = "jdbc:mysql://localhost:3306/academy";
+//    String dbId = "totoro";
+//    String dbPass = "1234";	
+/************************************************************************/	
+
+
+/**************** Oracle 연결 설정하는 부분 *****************************/
+    String driver = "oracle.jdbc.driver.OracleDriver";  	
+
+    String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String dbId = "scott";
+    String dbPass = "tiger";
+/************************************************************************/
+
+
+	Class.forName(driver);
+	con=DriverManager.getConnection(jdbcUrl,dbId ,dbPass );
+	
+	out.println("제대로 연결되었습니다.");
+
+	} catch(Exception e){ 
+
+		e.printStackTrace();
+
+	}
+%>
+
+
+5. 만약 데이터베이스 연결 실패 메세지가 나올때에는 
+    C:\oracle\product\10.2.0\db_1\NETWORK\ADMIN 폴더 안에 있는 
+
+     listener.ora
+     tnsnames.ora
+
+     파일의 Host=컴퓨터 이름, Port=1521 등을 점검한다.
+
+

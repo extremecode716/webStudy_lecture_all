@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardns">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="boardResult"      type="board">
+		<result property="num"	     column="num" />
+		<result property="writer"    column="writer" />
+		<result property="subject"   column="subject" />
+		<result property="content"   column="content" />
+		<result property="email"     column="email" />
+		<result property="readcount" column="readcount" />
+		<result property="passwd"    column="passwd" />
+		<result property="ref"     	 column="ref" />
+		<result property="re_step"	 column="re_step" />
+		<result property="re_level"  column="re_level" />
+		<result property="ip"  		 column="ip" />
+		<result property="reg_date"	 column="reg_date" />
+		<result property="del" 		 column="del" />
+	</resultMap>
+	<!-- <select id="list" parameterType="hashMap" resultMap="boardResult"> -->
+	<select id="list" parameterType="board" resultMap="boardResult">
+		select * from (select a.*,rowNum rn from (
+			select * from board
+		<where>
+			<if test="keyword != null and search!='subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword != null and search=='subcon'">
+				subject like '%'||#{keyword}||'%' or
+				content like '%'||#{keyword}||'%'
+			</if>
+		</where>			
+			 order by ref desc,re_step) a )
+			where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getTotal" parameterType="board" resultType="int">
+		select count(*) from board 
+		<where>
+			<if test="keyword != null and search !='subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword != null and search=='subcon'">
+				subject like '%'||#{keyword}||'%' or
+				content like '%'||#{keyword}||'%'
+			</if>
+		</where>
+	</select>
+	<select id="select" parameterType="int" resultType="board">
+		select * from board where num=#{num}
+	</select>
+	<select id="getMaxNum" resultType="int">
+		select nvl(max(num),0) + 1 from board
+	</select>
+	<insert id="insert" parameterType="board">
+<!-- 	<selectKey keyProperty="num" 
+			order="BEFORE" resultType="int">
+			select nvl(max(num),0) + 1 from board
+		</selectKey> -->
+		insert into board values (#{num},#{writer},#{subject},
+			#{content},#{email},0,#{passwd},#{ref},
+			#{re_step},#{re_level},#{ip},sysdate,'n')
+	</insert>
+	<update id="selectUpdate" parameterType="int">
+		update board set readcount = readcount+1 where num=#{num}
+	</update>
+	<update id="update" parameterType="board">
+		update board set writer=#{writer},subject=#{subject},
+			content=#{content},email=#{email} 
+			where num=#{num}
+	</update>
+	<update id="delete" parameterType="int">
+		update board set del='y' where num=#{num}
+	</update>
+	<update id="updateRe" parameterType="board">
+		update board set re_step = re_step + 1
+		 where ref=#{ref} and re_step > #{re_step}
+	</update>
+</mapper>

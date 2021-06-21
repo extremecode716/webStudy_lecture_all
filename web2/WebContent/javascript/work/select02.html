@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>change이벤트</title>
+<script>
+	function move() {
+		var sel = document.getElementById("sel");
+		location.href = sel.value;
+	}
+</script>
+</head>
+<body>
+	<form>
+		방송국: <select id="sel" onChange="move()">
+			<option value="">방송국 선택</option>
+			<option value="http://www.kbs.co.kr">KBS</option>
+			<option value="http://www.imbc.com">MBC</option>
+			<option value="http://www.sbs.co.kr">SBS</option>
+		</select>
+	</form>
+
+</body>
+</html>

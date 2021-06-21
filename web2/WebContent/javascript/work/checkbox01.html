@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>checkbox</title>
+<script>
+	function fruit(){
+		var f1 = document.getElementById("f1");
+		var f2 = document.getElementById("f2");
+		var f3 = document.getElementById("f3");
+		var f4 = document.getElementById("f4");
+		var s="";
+		if(f1.checked==true) s+="사과";
+		if(f2.checked) s+="\n배";
+		if(f3.checked) s+="\n복숭아";
+		if(f4.checked) s+="\n수박";
+		
+		alert(s+"\를 좋아하는군요");
+	}
+</script>
+</head>
+<body>
+<form>
+	<input type=checkbox checked id="f1">사과
+	<input type=checkbox id="f2">배
+	<input type=checkbox id="f3">복숭아
+	<input type=checkbox id="f4">수박
+	<input type=button value="확인" onClick="fruit()">
+</form>
+
+</body>
+</html>

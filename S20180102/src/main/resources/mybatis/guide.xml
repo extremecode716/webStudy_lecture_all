@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GuideDto">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="GuideResult" type="GuideDto">
+	    <result property="memberId" column="memberId"/>
+	    <result property="gno" column="gno"/>
+	    <result property="gimg" column="gimg"/>
+	    <result property="gtel" column="gtel"/>
+	    <result property="kakaoId" column="kakaoId"/>
+	    <result property="ginfo" column="ginfo"/>
+	    <result property="gpage" column="gpage"/>
+	    <result property="gcredate" column="gcredate"/>
+	    <result property="gaccount" column="gaccount"/>
+	    <result property="ggrade" column="ggrade"/>
+	    <result property="totalCost" column="totalCost"/>
+	    <result property="avgRStar" column="avgRStar"/>
+	    <result property="cntReview" column="cntReview"/>
+	    <result property="nickName" column="nickName"/>
+	    <result property="gbank" column="gbank"/>
+  </resultMap>
+  
+  <resultMap id="AccountingResult" type="AccountingDto">
+  		<result property="gno" column="gno"/>
+  		<result property="depositDate" column="depositDate"/>
+  		<result property="paymentCost" column="paymentCost"/>
+  		<result property="balance" column="balance"/>
+  		<result property="inCost" column="inCost"/>
+  </resultMap>
+
+  	<select id="selTotalAcc" parameterType="int" resultType="int">
+		select count(*) from Accounting where gno = #{gno}
+	</select>
+	
+	
+	<select id="selAccounting" parameterType="PagingDto" resultMap="AccountingResult">
+		select * from
+		(select rownum rn, a.* 
+		 from (select * 
+		       from Accounting 
+		       where gno= #{gno}
+		       order by DEPOSITDATE) a) 
+		 where rn between #{start} and #{end}
+	</select>
+	
+	<select id="totalGuide" resultType="int">
+		select count(*) from guide
+	</select>
+ 
+   <select id="g_list" parameterType="PagingDto" resultMap="GuideResult">
+	   select * from
+		(select rownum rn, a.* from (select * from guide
+		order by gNo) a) where
+		rn between #{start} and #{end}
+	</select>
+	
+	
+	<select id="g_info" parameterType="java.lang.String" resultMap="GuideResult">
+		Select g.*, mb.nickName 
+ 		  From guide g, member mb
+		 Where g.memberId= '${value}'
+   		   and g.memberId = mb.memberId
+	</select>
+	
+ 	<update id="upGuide" parameterType="GuideDto">
+ 		update guide 
+ 		  set     gImg = '${gimg}',
+ 		          gTel = '${gtel}',
+ 		       kakaoId = '${kakaoId}',
+ 		         gInfo = '${ginfo}',
+ 		         gPage = '${gpage}',
+ 		      gAccount = '${gaccount}',
+ 		         gBank = '${gbank}'
+ 	    where memberId = '${memberId}'
+ 	</update>
+ 	
+ 	<select id="selgNoToGuide" parameterType="int" resultType="GuideDto">
+		  Select g.*, mb.nickName 
+ 		   From guide g, member mb
+		  Where g.gno = #{gno}
+            and g.memberId = mb.memberId
+	</select>
+	
+	<update id="upCostGuide" parameterType="GuideDto">
+		update guide set totalCost = #{totalCost} where gNo = #{gno}
+	</update>
+	
+	<select id="selPopularGuide" resultType="GuideDto">
+		Select * 
+		  From ( select rownum rna, gd.* 
+		              From (select rownum rn, mb.nickName, NVL(rr.avgRStar1,0) avgRstar, NVL(rr.cntReview1,0) cntReview, g.* 
+		                  from  guide g,
+		                        ( Select gs.gno, NVL(avg(r.rstar),0) avgRstar1, count(rgroup) cntReview1
+		                            From gservice gs, review r
+		                          Where gs.gservno = r.gservno(+)
+		                            and r.rstep='0'
+		                          group by gs.gno
+		                        ) rr,
+                            member mb
+		                Where g.gno = rr.gno(+)
+                          and mb.memberId = g.memberId
+		                Order by avgRStar desc, cntReview desc
+		             ) gd 
+		)  where rna between 1 and 10
+	</select>
+	
+	<delete id="delGuide" parameterType="GuideDto">
+		Delete guide
+		 Where memberId=#{memberId}
+	</delete>
+	
+	
+	<select id="kakaofs" parameterType="java.lang.String" resultType="int">
+		select count(*) from guide where kakaoId='${value}'
+	</select>
+
+
+	<insert id="g_join" parameterType="GuideDto">
+		<if test="gno==2">
+			insert into GUIDE values
+			('${memberId}',(select max(gno)+1 from guide),
+			 <if test="gimg !=null">#{gimg}</if>
+			 <if test="gimg == null">null</if>,#{gtel},#{kakaoId},#{ginfo},
+			 <if test="gpage!=null">#{gpage}</if>
+			 <if test="gpage == null">null</if>
+			 ,sysdate,#{gaccount},0,0,#{gbank})
+
+		</if>
+		<if test="gno==1">
+			insert into GUIDE values
+			(#{memberId},(select max(gno)+1 from guide where gno &lt; 20001),
+			<if test="gimg !=null">#{gimg}</if>
+			 <if test="gimg == null">null</if>,#{gtel},#{kakaoId},#{ginfo},
+			<if test="gpage !=null">#{gpage}</if>
+			 <if test="gpage == null">null</if>,sysdate,#{gaccount},0,0,#{gbank})
+		</if>
+	</insert>
+	
+</mapper>

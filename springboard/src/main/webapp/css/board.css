@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+
+#boardcont_wrap{
+	width:400px; padding:25px;
+	border:1px solid blue; border-radius:20px; 
+	box-shadow:15px 15px 15px red; 
+	margin-top:70px; margin-left:auto; margin-right:auto;
+}
+#boardcont_wrap .boardcont_title{
+	margin:10px 0 0 120px; width:170px; font-size:20px;
+	background:skyblue; border-radius:20px;
+	text-align:center; padding:3px;
+}
+#boardcont_t{
+	margin:15px 0 0 70px;
+}
+#boardcont_t th{
+	background:skyblue; border-radius:15px;
+}
+#boardcont_menu{
+	margin:15px 0 0 100px;
+}
+
+/* 게시물 삭제 */
+#boarddel_wrap{
+	width:300px; height:180px; margin-top:70px;
+	border:1px solid blue; border-radius:20px;
+	box-shadow:15px 15px 15px red;
+	margin-left:auto; margin-right:auto;
+}
+#boarddel_wrap .boarddel_title{
+	margin:20px 0 0 90px; width:120px; background:skyblue;
+	border-radius:15px; font-size:20px; text-align:center;
+	padding:3px;
+}
+#boarddel_t{
+	margin:20px 0 0 30px;
+}
+#boarddel_t th{
+	background:skyblue; border-radius:15px;
+}
+#boarddel_menu{
+	margin:20px 0 0 100px;
+}
+
+/*게시물 답변달기 폼 ui */
+#boardreply_wrap{
+	width:550px; height:400px; margin-top:70px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+	box-shadow:20px 20px 20px red;
+}
+#boardreply_wrap .boardreply_title{
+	margin:20px 0 0 200px; width:160px; background:skyblue;
+	border-radius:15px; font-size:20px; text-align:center;
+	padding:3px;
+}
+#boardreply_t{
+	margin:20px 0 0 43px;
+}
+#boardreply_t th{
+	background:skyblue; border-radius:15px;
+}
+#boardreply_menu{
+	margin:25px 0 0 230px;
+}
+
+
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeDto">
+	<resultMap id="NoticeResult" type="NoticeDto">
+		<result property="noticeNo" column="noticeNo" />
+		<result property="ntitle" column="ntitle" />
+		<result property="ncontent" column="ncontent" />
+		<result property="nimg" column="nimg" />
+		<result property="nreadCount" column="nreadCount" />
+		<result property="ncredate" column="ncredate" />
+	</resultMap>
+
+	<select id="selNoticeList" parameterType="PagingDto" resultMap="NoticeResult">
+		select * from
+		(select rownum rn, a.* from (select * from notice
+			order by noticeno desc) a) where
+		rn between #{start} and
+		#{end}
+	</select>
+
+	<select id="totalNotc"  resultType="int">
+		select count(*) from notice
+	</select>
+	
+	<insert id="inNotice" parameterType="NoticeDto">
+		Insert into notice 
+		Values (notice_seq.nextval,
+					   '${ntitle}',
+					 '${ncontent}', 
+					     '${nimg}',0,sysdate)
+	</insert>
+	
+	<update id="upNotice" parameterType="NoticeDto">
+		Update notice 
+		   Set   ntitle ='${ntitle}', 
+		       ncontent ='${ncontent}', 
+		<if test="nimg != null">nimg ='${nimg}'</if> 
+		 Where noticeNo = ${noticeNo}
+	</update>
+	
+	<delete id="delNotice" parameterType="int">
+		delete from notice where
+		noticeNo=#{noticeNo}
+	</delete>
+	
+	<select id="selNoticeDetail"  resultType="NoticeDto" parameterType="int">
+		Select * 
+		  From notice 
+		 Where noticeNo=#{noticeNo}
+	</select>
+
+	<!-- 소희 0115 이후 추가 -->
+	<update id="upNReadCount" parameterType="int">
+		update notice 
+		   set nReadCount = ( Select nReadCount 
+		   						From notice 
+		   					   Where noticeNo=#{noticeNo} ) + 1
+		where noticeNo = #{noticeNo}
+	</update>
+	
+</mapper>

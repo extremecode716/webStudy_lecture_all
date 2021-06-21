@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WishDto">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+  	<resultMap id="tcResult" type="TourCardDto">
+		<result property="rn" column="rn" />
+		<result property="imgSrc" column="imgSrc" />
+		<result property="gimg" column="gimg" />
+		<result property="nickName" column="nickName" />
+		<result property="gservTitle" column="gservTitle" />
+		<result property="gservSub" column="gservSub" />
+		<result property="gservLeadTime" column="gservLeadTime" />
+		<result property="likeIt" column="likeIt" />
+		<result property="remainSize" column="remainSize" />
+		<result property="gservNo" column="gservNo" />
+		<result property="gservPrice" column="gservPrice" />
+		<result property="heart" column="heart" />
+		<result property="servTag" column="servTag" />
+		<result property="areaCode" column="areaCode" />
+		<result property="gservArea" column="gservArea" />
+		<result property="rvCnt" column="rvCnt" />
+	</resultMap>
+
+
+	<select id="selWishList" parameterType="PagingDto" resultMap="tcResult">
+		Select * from     
+		    (Select rownum rn, tc.*, Decode(lt.gServNo,tc.gServNo,'1','0') heart,
+		            NVL(rv.cnt,0)rvCnt 
+		        From v_tourcard tc,
+		             (Select count(*) cnt , gServno 
+		                From review 
+		               Where rStep = 0 
+		               Group by gServNo) rv,
+		             (Select * 
+		                From likeit 
+		               Where memberId = '${memberId}') lt 
+		       Where tc.gServNo=lt.gServNo(+)
+		         and tc.gServNo=rv.gServNo(+)
+		         and tc.gServno in (select gServno from wishlist where memberId='${memberId}')
+		    Order by gServTitle) 
+		Where rn between ${start} and ${end}
+	</select>
+   
+   <select id="totalWish" parameterType="java.lang.String" resultType="int">
+   		select count(*) from wishList where memberId='${value}'
+   </select>
+
+	<delete id="delWishList" parameterType="WishDto">
+		delete wishList where memberId='${memberId}'and gServNo = ${gservNo}
+	</delete>
+	
+	<insert id="inWishList" parameterType="WishDto">
+		insert into wishList values ('${memberId}', ${gservNo})
+	</insert>
+	
+	<select id="wishCheck" parameterType="WishDto" resultType="int">
+		select count(*) 
+		  from wishList 
+		 where memberId='${memberId}'
+		   and gServNo=${gservNo}
+	</select>
+	
+</mapper>

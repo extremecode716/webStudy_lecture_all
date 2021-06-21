@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+//  연말까지 남은 일수 구하기?
+	var t = new Date();
+	var y = t.getFullYear();
+	
+//  2019년 12월 31일 설정   : new Date(연, 월-1, 일)
+	var t1 = new Date(y,11,31);
+	
+//  연말까지 남은 기간(밀리초(msc)) = 연말날짜 - 현재날짜
+	var diff = t1 - t;
+//	alert(diff);
+
+//  올림기능: Math.ceil()
+	var result = Math.ceil(diff/(1000 * 60 * 60 * 24));
+//	alert(result);
+
+	document.write("연말까지 남은 일자:"+ result+"일");
+
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>request객체 연습</title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("form").submit(function(){
+			if($("#name").val()==""){
+				alert("이름을 입력하세요");
+				$("#name").focus();
+				return false;
+			}
+			if($("#studentNum").val()==""){
+				alert("학번을 입력하세요");
+				$("#studentNum").focus();
+				return false;
+			}
+			if($("#male").is(":checked")==false &&
+			   $("#female").is(":checked")==false){
+				alert("성별을 선택하세요");
+				return false;
+			}
+			if($("#major").val()=="#"){
+				alert("전공을 입력하세요");
+				$("#major").focus();
+				return false;
+			}
+		});	
+	});	
+	</script>
+</head>
+<body>
+<h1>Request 예제1</h1>
+
+<form name=myform method=post action="requestExample1.jsp">
+ 이름 : <input type="text" name="name" id="name" autofocus="autofocus"><br>
+ 학번 : <input type="text" name="studentNum" id="studentNum"><br>
+ 성별 : 남자 <input  type="radio" name="gender"  value="남자" id="male">
+        여자 <input type="radio" name="gender" value="여자" id="female"><br>
+ 전공 : <select name="major" id="major">
+			<option value="#">전공을 선택하세요</option>
+			<option value="컴퓨터공학">컴퓨터공학</option>
+			<option value="영문학과">영문학과</option>
+			<option value="수학과">수학과</option>
+			<option value="정치학과">정치학과</option>
+			<option value="산업디자인과">산업디자인과</option>
+		</select><br>
+<input type="submit" value="보내기">
+<input type="reset" value="취소">
+</form>
+
+</body>
+</html>

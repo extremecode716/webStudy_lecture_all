@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+		
+	<!-- ViewResolver -->
+	<beans:bean id="internalResourceViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="jsp/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+
+	<!-- Component, Controller, Service, Repository	어노테이션이 붙은 클래스의 빈을 자동 생성하도록 설정 -->
+	<context:component-scan base-package="controller,service,dao" />
+	
+	
+	<!-- 인터셉터 설정 -->	
+	<beans:bean id="sessionChk" class="controller.SessionCheckInter"/>	
+	 <interceptors>
+		<interceptor>
+			<mapping path="/member_edit.nhn"/>
+			<mapping path="/member_edit_ok.nhn"/>			
+			<mapping path="/member_del.nhn"/>
+			<mapping path="/member_del_ok.nhn"/>
+			<mapping path="/member_logout.nhn"/>
+			<beans:ref bean="sessionChk"/>
+		</interceptor>
+	</interceptors>	 
+	
+	<!-- 파일 업로드  설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10000000"/>	
+	</beans:bean>	
+	
+	
+	<!-- <beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/> -->
+   
+</beans:beans>
+
+
+

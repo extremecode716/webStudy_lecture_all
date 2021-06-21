@@ -1,0 +1,45 @@
+<html>
+	<head><title>JSP Bean example</title>
+	<meta charset="euc-kr">
+	<script>
+
+	</script>
+	</head>
+
+<body bgcolor="#FFFFFF" onLoad="document.myform.userid.focus()">
+<center>
+<H2>로그인 예제</H2>
+<HR>
+
+<form method="post" action="login.jsp" name="myform">
+  <table width="250" border="1" align="center" bordercolordark="#FF0033" cellspacing="0" cellpadding="5">
+    <tr bgcolor="#FF6666"> 
+    <td colspan="2" height="21"> 
+      <div align="center"><b><font size="2">로그인</font></b></div>
+    </td>
+  </tr>
+  <tr bgcolor="#FFCCCC"> 
+      <td> 아이디</td>
+      <td> <b> 
+        <input type="text" name="userid" size=10>
+        </b> </td>
+  </tr>
+  <tr bgcolor="#FFCCCC"> 
+      <td> 패스워드</td>
+      <td> 
+        <input type="password" name="passwd" size=10>
+      </td>
+  </tr>
+  <tr bgcolor="#FFCCCC"> 
+    <td height="42" colspan="2"> 
+      <div align="center">
+        <input type="submit" value="로그인" onClick="check()">
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+<p>
+
+</body>
+</html>

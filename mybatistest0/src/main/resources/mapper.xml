@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper">
+	<!-- id는 중복이 되지 않도록 설정 하면 됨 -->
+	<insert id="insert">
+		INSERT INTO member VALUES()
+	</insert>
+	
+	<!-- SQL 속성명과 DTO의 필드명과 일치 해야함. -->
+	<select id="select">
+		SELECT * FROM member;
+	</select>
+	
+	<update id="update">
+		UPDATE member set
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM  member
+	</delete>
+
+</mapper>

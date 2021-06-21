@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kor" xml:lang="ko">
+<head>
+<title>new document</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript">
+	//<![CDATA[
+	var myAgent = navigator.userAgent.toLowerCase();
+	var mobile = [ "iphone", "ipod", "android", "blackberry", "window ce",
+			"nokia", "webos", "opera mini", "sonyericsson", "opera mobi",
+			"iemobile" ];
+
+	for (var i = 0; i < mobile.length; i++) {
+		if (myAgent.indexOf(mobile[i]) >= 0) {
+			location.href = "http://m.naver.com";
+			break;
+		} else {
+			location.href = "http://www.naver.com";
+		}
+	}
+	//]]>
+</script>
+</head>
+<body>
+	<h1>PC버전 페이지</h1>
+</body>
+</html>

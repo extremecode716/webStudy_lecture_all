@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>submit이벤트</title>
+<script>
+	function check(){
+		var name = document.getElementById("name");
+		var email = document.getElementById("email");
+		
+		if(name.value == ""){
+			alert("이름을 입력하세요.");
+			name.focus();
+			return false;
+		}
+		if(email.value == ""){
+			alert("email주소를 입력하세요.");
+			email.focus();
+			return false;
+		}
+		
+	}
+</script>
+</head>
+<body>
+<form action="send.jsp" onSubmit="return check()">
+	이름 : <input type=text id=name name=name><br>
+	이메일 : <input type=text id=email name=email><br>
+	<input type=submit value="전송">
+</form>
+</body>
+</html>

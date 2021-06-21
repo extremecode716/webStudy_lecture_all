@@ -1,0 +1,23 @@
+<Context> 
+  <Resource name="jdbc/orcl"  
+   auth="Container"
+   type="javax.sql.DataSource" 
+   username="totoro" 
+   password="totoro123"
+   driverClassName="oracle.jdbc.driver.OracleDriver"
+   factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+   url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+   maxActive="500"  
+   maxIdle="100"/>  
+</Context>
+
+<!-- name: 커넥션풀 이름 -->
+<!-- factory: Tomcat 8.0부터 기본적으로 라이브러리에 존재함
+ Java Resources->tomcat-dbcp.jar->org.apache.tomcat.dbcp-> dbcp2.BasicDataSourceFactory.class를 가져온다. -->
+<!--  p423 참조
+ initialSize=     BasicDataSource 클래스 생성 후 최초로 getConnection() 메서드를 호출할 때 커넥션 풀에 채워 넣을 커넥션 개수
+ minIdle=0        최소한으로 유지할 커넥션 개수(기본값: 0)
+ maxActive="500"  컨넥션풀이 관리하는 컨넥션의 최대 갯수
+		          (기본값 : 8)
+ maxIdle="100" 	  컨넥션풀이 관리하는 최대 유휴 갯수(기본값 : 8)          
+-->

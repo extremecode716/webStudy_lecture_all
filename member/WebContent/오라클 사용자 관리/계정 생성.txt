@@ -1,0 +1,13 @@
+* 계정 생성법
+
+1. totoro 계정 생성
+    관리자 계정(system)으로 접속한다
+    c:\> sqlplus  system/ora123
+    SQL>  create user totoro identified by totoro123;
+
+2. totoro 계정에게 role을 부여한다.
+    SQL> grant  connect, resource to totoro;
+
+3. totoro 계정으로 전환한다.
+     SQL> conn totoro/totoro123
+     SQL>  show user

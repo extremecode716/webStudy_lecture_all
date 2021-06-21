@@ -1,0 +1,8 @@
+create  table  member1( id varchar2(12) primary key,
+
+                       	     passwd varchar2(12) not null,
+
+		     name varchar2(10) not null,
+	
+		     reg_date timestamp not null );
+		    

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qaDto">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="qaResult" type="qaDto">
+		<result property="memberId" column="memberId" />
+		<result property="gservNo" column="gservNo" />
+		<result property="qaNumber" column="qaNumber" />
+		<result property="qaReceiver" column="qaReceiver" />
+		<result property="qaTitle" column="qaTitle" />
+		<result property="qaContent" column="qaContent" />
+		<result property="qaCredate" column="qaCredate" />
+		<result property="qaStep" column="qaStep" />
+		<result property="qaComplete" column="qaComplete" />
+		<result property="gservTitle" column="gservTitle" />
+	</resultMap>
+
+<!-- 지영 -->
+	<insert id="inQA" parameterType="qaDto" >
+		insert into qa
+		values(#{memberId},#{gservNo},qa_seq.nextval,#{qaReceiver},#{qaTitle},#{qaContent},SYSDATE,0,'n')
+	</insert>
+
+	<update id="upComplete" parameterType="qaDto">
+		Update qa 
+		   Set qaComplete = '${qaComplete}'
+		Where qaNumber = ${qaNumber}
+		  and qaStep = 0 
+	</update>
+	<select id="selOneQA" parameterType="qaDto" resultMap="qaResult">
+		Select * 
+		 From QA
+		Where qaNumber = ${qaNumber}
+		  and qaStep   = ${qaStep} 
+	</select>
+
+
+<!-- 소희 -->
+	<!-- qastep = 0인, 그 문의사항 자체의 개수만 count -->
+	<select id="selTotalQA" parameterType="PagingDto" resultType="int">
+		select count(q.gservNo) 
+		  from qa q, gService g
+		 where q.gservNo = g.gservNo(+)
+		   and q.qaStep = 0
+		<if test="memberId != null">and q.memberId=#{memberId}</if>
+		<if test="qaReceiver != null">and q.qaReceiver = #{qaReceiver}</if>
+		<if test="reply_yn != null">and q.qacomplete=#{reply_yn}</if>
+		<if test="gservTitle != null">and g.gServTitle=#{gservTitle}</if>
+	</select>
+
+	<!-- 필터를 적용하여, 회원이 작성한 문의사항을 보여준다 -->
+	<select id="selQAList" parameterType="PagingDto" resultMap="qaResult">
+		<!-- 필터링 적용 없읍 -->
+		select * from 
+		  ( Select rownum rn, a.* 
+		      From ( Select Q.*, G.GSERVTITLE
+					   From qa Q, GSERVICE G
+					  WHERE G.GSERVNO(+) = Q.GSERVNO
+						and Q.memberId = #{memberId}
+						and Q.qaStep = 0 
+		<if test="reply_yn != null">and qacomplete = #{reply_yn}</if>
+					 Order by qaNumber,qaStep) a) 
+		where rn between #{start} and #{end}
+	</select>
+	
+	<!-- (회원용)이에 대한 답변 -->
+	<select id="selQAList_rpy" parameterType="PagingDto" resultMap="qaResult">
+		select Q.*, G.GSERVTITLE
+		from qa Q, GSERVICE G
+		WHERE G.GSERVNO(+) = Q.GSERVNO
+		and (Q.memberId = #{memberId} 
+		or Q.qareceiver = #{memberId}) 
+		and Q.qaStep > 0 
+		<!-- 답변자 혹은 문의자의 아이디 == memberID -->
+		order by qaNumber,qaStep
+	</select>
+	
+	
+	
+	<!-- 필터를 적용하여, 가이드가 열람할 문의사항을 보여준다 -->
+	<select id="selQAList2" parameterType="PagingDto" resultMap="qaResult">
+		<!-- 필터링 적용 없읍 -->
+		select * from (select rownum rn, a.* from (select Q.*, G.GSERVTITLE
+		from qa Q, GSERVICE G
+		WHERE G.GSERVNO = Q.GSERVNO
+		and Q.qaReceiver = #{qaReceiver}
+		and Q.qaStep = 0
+		<if test="reply_yn != null">and Q.qacomplete = #{reply_yn}</if>
+		<if test="gservTitle != null">and G.gServTitle = #{gservTitle}</if> 
+		order by qaNumber,qaStep) a)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<!-- (가이드용)이에 대한 답변 -->
+	<select id="selQAList2_rpy" parameterType="PagingDto" resultMap="qaResult">
+		select Q.*, G.GSERVTITLE
+		from qa Q, GSERVICE G
+		WHERE G.GSERVNO = Q.GSERVNO
+		and (Q.memberId = #{qaReceiver} 
+		or Q.qaReceiver = #{qaReceiver})
+		and Q.qaStep > 0
+		<if test="reply_yn != null">and Q.qacomplete = #{reply_yn}</if>
+		<if test="gservTitle != null">and G.gServTitle = #{gservTitle}</if> 
+		order by qaNumber,qaStep
+	</select>
+	
+	<!-- (가이드) 답변 입력 -->
+	<insert id="insertQA_guide" parameterType="qaDto">
+		insert into qa
+		values(#{memberId},#{gservNo},#{qaNumber},#{qaReceiver},#{qaTitle},#{qaContent},SYSDATE,(select max(qaStep)+1 from qa where qanumber = #{qaNumber}),'n')
+	</insert>
+
+	<!-- 회원 창에서.. 회원이 특정 문의사항의 제목을 클릭했을 경우 그 내용과 답변 확인 이거 ajax 안쓰게 되면서 아마 필요없어진듯-->
+	<!-- <select id="selqaCkList" parameterType="int" resultMap="qaResult">
+		select * from qa 
+		where qaNumber = #{qaNumber}
+		order by qaStep
+	</select>  -->
+	
+	
+	<!-- 매니저 qa의 total 구하기 -->
+	<select id="selTotalQA_manager" parameterType="PagingDto"
+		resultType="int">
+	select count(*) 
+	  from qa
+	 where qaStep = 0
+	   and (memberId in (select memberId
+	                      from member where authority = '3')
+	    or qaReceiver in (select memberId 
+	    				  from member where authority = '3'))
+	<if test="reply_yn != null">and qacomplete = #{reply_yn}</if>
+	</select>
+	
+	<!-- manager QnA List -->
+	<select id="selQAList3" parameterType="PagingDto" resultMap="qaResult">
+		Select * 
+  		 From ( Select rownum rn, a.* 
+             	  From ( Select * 
+               		       From qa
+                  		  where qaStep = 0
+                     		and (memberId in (select memberId from member where authority = '3')
+                      		 or qaReceiver in (select memberId from member where authority = '3')
+                      		 <if test="reply_yn != null">and qacomplete = #{reply_yn}</if>)<!-- 어차피 작성순서대로 qanumber매겨지는거라서.. -->
+                ) a
+        ) where rn between #{start} and #{end}
+	</select>
+	
+	<!-- manager QnA-Rpy List -->
+	<select id="selQAList3_rpy" parameterType="PagingDto" resultMap="qaResult">
+		select * from QA
+		where qaStep != 0
+		and (memberId in (select memberId from member where authority = '3')
+		or qaReceiver in (select memberId from member where authority = '3'))
+		<if test="qaNumber > 0">and qAnumber = #{qaNumber}</if>
+		<if test="reply_yn != null">and qAcomplete = #{reply_yn}</if>
+		order by qAnumber,qaStep
+	</select>
+	<select id="selQAdetail" parameterType="PagingDto" resultType="QADto">
+		select * from QA where qanumber = #{qaNumber} and qastep = 0
+	</select>
+	<!-- member가 QA를 delete..(다른 사람들도 쓸 수도 있음) -->
+	<delete id="delQA_member" parameterType="QADto">
+		delete from QA
+		where qaNumber = #{qaNumber}
+		<!-- 해당 문의를 지우면 답변도 지움 -->
+		<if test="qaStep > 0">and qaStep = #{qaStep}</if>
+	</delete>
+	
+	<!-- 내용 수정하기 -->
+	<update id="updateQaContent" parameterType="QADto">
+		update QA set qaContent = #{qaContent}, qaCredate = SYSDATE
+		where qaNumber = #{qaNumber}
+		and qaStep = #{qaStep}
+	</update>
+	
+</mapper>

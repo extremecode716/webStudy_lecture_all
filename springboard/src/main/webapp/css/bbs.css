@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+
+#bbswrite_wrap{
+	width:570px; height:412px;
+	margin-top:70px; margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+	box-shadow:15px 15px 15px red;
+}
+#bbswrite_wrap .bbswrite_title{
+	margin:20px 0 0 220px; width:140px; border-radius:15px;
+	font-size:20px; background:skyblue; text-align:center;
+	padding:3px;
+}
+#bbswrite_t{margin:20px 0 0 50px;}
+#bbswrite_wrap th{background:skyblue; border-radius:15px;}
+#bbswrite_menu{
+	margin:20px 0 0 220px;
+}
+
+/*자료실 목록*/
+#bbslist_wrap{
+	width:560px; height:550px; margin-top:70px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+	box-shadow:15px 15px 15px #ccc;
+}
+#bbslist_wrap .bbslist_title{
+	margin:20px 0 0 220px; width:120px; padding:3px;
+	background:skyblue; border-radius:15px;font-size:20px;
+	text-align:center;
+}
+#bbslist_c{
+	margin:15px 0 0 430px;
+}
+#bbslist_t{
+	margin:15px 0 0 40px;
+}
+#bbslist_paging{
+	margin:13px 0 0 190px;
+}
+#bbslist_w{
+	margin:13px 0 0 450px;
+}
+
+/*게시물 내용 ui*/
+#bbscont_wrap{
+	padding:30px; margin-top:70px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+	box-shadow:15px 15px 15px red; width:400px;
+}
+#bbscont_wrap .bbscont_title{
+	margin:0 0 0 115px; width:170px; padding:3px;
+	font-size:20px; text-align:center; background:skyblue;
+	border-radius:15px;
+}
+
+#bbscont_t{
+	margin:15px 0 0 30px;
+}
+#bbscont_t th{background:skyblue; border-radius:15px;}
+#bbscont_menu{
+	margin:15px 0 0 90px;
+}
+
+/*게시물 삭제 ui*/
+#del_wrap{
+	width:250px; height:180px; margin-top:70px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+	box-shadow:15px 15px 15px red;
+}
+#del_wrap .del_title{
+	margin:20px 0 0 70px; width:120px; background:skyblue;
+	border-radius:15px; text-align:center; font-size:20px;
+	padding:3px;
+}
+#del_t{
+	margin:20px 0 0 30px;
+}
+#del_t th{
+	background:skyblue; border-radius:15px;
+}
+#del_menu{
+	margin:23px 0 0 80px;
+}
+
+/*검색 ui*/
+#bbsfind{
+	margin:26px 0 0 143px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

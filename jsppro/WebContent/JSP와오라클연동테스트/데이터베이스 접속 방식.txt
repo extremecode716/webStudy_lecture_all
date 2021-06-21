@@ -1,0 +1,8 @@
+* 单捞磐海捞胶 立加 规侥
+
+  1. JDBC(Java DataBase Connectivity) 规侥
+
+  2. DBCP(DataBase Connection Pool) 规侥
+
+  3. ORM(Object Relational Mapping) 橇饭烙况农
+     ex) iBatis, MyBatis, hibernate etc

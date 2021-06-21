@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SearchDto">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="SearchResult" type="SearchDto">
+    <result property="srch_title" column="srch_title"/>
+    <result property="srch_date" column="srch_date"/>
+    <result property="hotOrder" column="hotOrder"/>
+  </resultMap> 
+  
+  	<resultMap id="tcResult" type="TourCardDto">
+		<result property="rn" column="rn" />
+		<result property="imgSrc" column="imgSrc" />
+		<result property="gimg" column="gimg" />
+		<result property="nickName" column="nickName" />
+		<result property="gservTitle" column="gservTitle" />
+		<result property="gservSub" column="gservSub" />
+		<result property="gservLeadTime" column="gservLeadTime" />
+		<result property="likeIt" column="likeIt" />
+		<result property="remainSize" column="remainSize" />
+		<result property="gservNo" column="gservNo" />
+		<result property="gservPrice" column="gservPrice" />
+		<result property="heart" column="heart" />
+		<result property="servTag" column="servTag" />
+		<result property="areaCode" column="areaCode" />
+		<result property="gservArea" column="gservArea" />
+		<result property="rvCnt" column="rvCnt" />
+		<result property="gno" column="gno" />
+	</resultMap>
+	
+<select id="oneItemName" parameterType="java.lang.String" resultType="java.lang.String">
+		  	  Select itemName
+		  	 	From codeSet
+		  	 Where itemCode='${value}'
+</select>  
+
+  <select id="keywordList" parameterType="SearchDto" resultMap="tcResult">
+	  Select * From
+			(Select rownum rna, a.* from     
+				  (   Select rownum rn, tc.*, Decode(lt.gServNo,tc.gServNo,'1','0') heart,
+				             NVL(rv.cnt,0)rvCnt 
+				        From v_tourcard tc,
+				             (Select count(*) cnt , gServno 
+				                From review 
+				               Where rStep = 0 
+				               Group by gServNo) rv,
+				             (Select * 
+				                From likeit 
+				               Where memberId = '${memberId}') lt 
+				       Where tc.gServNo=lt.gServNo(+)
+				         and tc.gServNo=rv.gServNo(+)
+				         and ${endDate}
+				         and ${startDate}
+				         and               (gServTitle LIKE '%${gservTitle}%' 
+			              OR                 gServSub  LIKE '%${gservSub}%'
+			              OR                 gServArea LIKE '%${gservArea}%'		              
+			              OR                   servTag LIKE '%${servTag}%'
+			              OR                  nickName LIKE '%${nickName}%'
+			               )
+				    Order by ${order}, gServTitle
+			    ) a 
+			 ) aa
+		Where rna between ${start} and ${end}
+  </select>
+  
+  <select id="filterList" parameterType="SearchDto" resultMap="tcResult">
+  	  Select * From
+			(Select rownum rna, a.* from     
+				  (   Select rownum rn, tc.*, Decode(lt.gServNo,tc.gServNo,'1','0') heart,
+				             NVL(rv.cnt,0)rvCnt 
+				        From v_tourcard tc,
+				             (Select count(*) cnt , gServno 
+				                From review 
+				               Where rStep = 0 
+				               Group by gServNo) rv,
+				             (Select * 
+				                From likeit 
+				               Where memberId = '${memberId}') lt 
+				       Where tc.gServNo=lt.gServNo(+)
+				         and tc.gServNo=rv.gServNo(+)
+				         and ${endDate}
+                		 and  ${startDate}
+              			 and gServLeadTime ${gservLeadTime}
+              			 and areaCode            LIKE '${areaCode}%' 
+            		     and (servTag            LIKE ${servTag})
+            		     and (gServDay           LIKE ${gservDay})
+            		     and to_char(gServPrice) LIKE '${gservPrice}%'
+				    Order by ${order}, gServTitle
+			    ) a 
+			 ) aa
+		Where rna between ${start} and ${end}
+  </select>
+  
+  <select id="total_keyword" parameterType="SearchDto" resultType="int">
+  	    Select count(*) 
+	      From v_tourcard tc
+	     Where ${endDate}
+		   and ${startDate}
+		   and (                    gServTitle LIKE '%${gservTitle}%' 
+	              OR                 gServSub  LIKE '%${gservSub}%' 
+	              OR                 gServArea LIKE '%${gservArea}%'
+	              OR                   servTag LIKE '%${servTag}%'
+	              OR                  nickName LIKE '%${nickName}%'
+	       )
+  </select>
+  
+  
+  <select id="total_filter" parameterType="SearchDto" resultType="int">
+  	    Select count(*) 
+	      From v_tourcard tc
+	     Where ${endDate}
+		   and ${startDate}
+		   and gServLeadTime ${gservLeadTime}
+		   and areaCode  LIKE '${areaCode}%' 
+           and (servTag  LIKE ${servTag})
+	       and (gServDay LIKE ${gservDay})
+	       and to_char(gServPrice) LIKE '${gservPrice}%'
+  </select>
+  
+  <insert id="inKeyWord" parameterType="java.lang.String">
+  		insert into searchRecord values ('${value}', sysdate)
+  </insert>
+  
+  <select id="selGPage" parameterType="PagingDto" resultMap="tcResult">
+  		Select * From
+			(Select rownum rna, a.* from     
+				  (   Select rownum rn, tc.*, Decode(lt.gServNo,tc.gServNo,'1','0') heart,
+				             NVL(rv.cnt,0)rvCnt 
+				        From v_tourcard tc,
+				             (Select count(*) cnt , gServno 
+				                From review 
+				               Where rStep = 0 
+				               Group by gServNo) rv,
+				             (Select * 
+				                From likeit 
+				               Where memberId = '${memberId}') lt 
+				       Where tc.gServNo=lt.gServNo(+)
+				         and tc.gServNo=rv.gServNo(+)
+              			 and tc.gno = #{gno}
+      
+				    Order by gServTitle
+			    ) a 
+			 ) aa
+      where rn BETWEEN #{start} and #{end}
+  </select> 
+   
+  <select id="hotKeyword" resultMap="SearchResult">
+  		Select * 
+  		  From ( Select rownum hotOrder, a.*  
+  		           From (select srch_title, count(*) cnt 
+                           from searchRecord 
+                 		  group by srch_title 
+                 		  order by cnt desc
+                 		 ) a 
+               )
+         Where hotOrder between 1 and 10
+  </select>
+</mapper>

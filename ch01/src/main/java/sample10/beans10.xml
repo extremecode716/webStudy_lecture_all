@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="vh" class="sample10.VehicleImpl">
+		<property name="name" value="대박이"></property>
+		<property name="rider" value="비행기"></property>
+		<property name="out" ref="out"></property>
+	</bean>
+	<bean id="out" class="sample10.FileOutputter">
+		<property name="fileName" value="aa.txt"></property>
+	</bean>
+</beans>

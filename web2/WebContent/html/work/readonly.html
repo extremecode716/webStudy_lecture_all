@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+readonly, disabled 속성
+공통점 : 입력 양식의 값을 수정할 수 없도록 비활성화 시켜주는 역할
+차이점 : readonly 속성으로 설정된 양식의 값은  action으로 설정된 페이지로 값이 전달 되지만,
+       disabled 속성으로 설정된 양식의 값은 action으로 설정된 페이지로 값이 전달되지 않는다.
+ -->
+<form action="readonly.jsp">
+	<input type=text name="myid01" value="1234" readonly="readonly"> <br>
+	<input type=text name="myid02" value="1234" disabled="disabled"> <br>
+	<input type="submit" value="전송">	
+</form>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>document 객체</title>
+<script>
+	function red(){
+		document.bgColor='red';		// 배경색 설정
+		document.fgColor='yellow';	// 글자색 설정
+	}
+	function blue(){
+		document.bgColor='blue';
+		document.fgColor='white';
+	}
+	function yellow(){
+		document.bgColor='yellow';
+		document.fgColor='black';
+	}
+</script>
+
+</head>
+<body>
+<form>
+	<h3>document객체 연습</h3>
+	
+	<input type="button" value="빨강색" onClick="red()">
+	<input type="button" value="파랑색" onClick="blue()">
+	<input type="button" value="노랑색" onClick="yellow()">
+	
+</form>
+</body>
+</html>

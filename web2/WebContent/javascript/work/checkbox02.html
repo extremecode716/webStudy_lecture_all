@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>checkbox</title>
+<script>
+	function copy() {
+		var address1 = document.getElementById("address1");
+		var address2 = document.getElementById("address2");
+		var mycheck = document.getElementById("mycheck");
+
+		if (address1.value == "") {
+			alert("주소를 입력하세요");
+			address1.focus();
+			return false;
+		}
+
+		if (mycheck.checked == true) {
+			address2.value = address1.value;
+		} else if (mycheck.checked == false) {
+			address2.value = "";
+		}
+	}
+</script>
+</head>
+<body>
+	<form>
+		주소:<input type=text id="address1"><br> 배송지 주소:<input
+			type=text id="address2"><br> <input type=checkbox
+			id="mycheck" onClick="copy()">주소복사
+
+	</form>
+
+</body>
+</html>

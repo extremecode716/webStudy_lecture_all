@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis-config: mybatis 환경 설정 파일 -->
+<!-- 환경설정 파일: 1. DTO클래스 경로 및 별칭 설정 2. JDBC 설정:db.properties를 불러와서 환경설정 3. mappers 파일들을 불러옴-->
+<configuration>
+	<properties resource="db.properties" />
+	<!-- typeAlias type="DTO 코드의 경로값" alias="별칭명" -->
+	<typeAliases>
+		<typeAlias type="#package.#modelname" alias="#modelname"></typeAlias>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="#package/#mapper.xml" />
+	</mappers>
+</configuration>

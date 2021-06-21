@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>스트링 객체</title>
+</head>
+<body>
+<script>
+	var str1 = '자바스크립트';
+	var str2 = "자바스크립트";
+	var str3 = new String('javascript');
+	var str4 = new String("javascript");
+	
+	document.write("str1="+str1+"<br>");
+	document.write("str2="+str2+"<br>");
+	document.write("str3="+str3+"<br>");
+	document.write("str4="+str4+"<br>");
+	
+	// length 속성 : 문자열의 길이를 구해줌 (자바에서는 메소드지만 javascript는 속성)
+	document.write("문자열의 길이:"+str1.length); // 6
+	document.write("문자열의 길이:"+str2.length); // 6
+	document.write("문자열의 길이:"+str3.length); // 10
+	document.write("문자열의 길이:"+str4.length); // 10
+
+</script>
+
+</body>
+</html>

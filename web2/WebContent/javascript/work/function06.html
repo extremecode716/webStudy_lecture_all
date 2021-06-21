@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>재귀함수로 팩토리얼 구하기</title>
+<script>
+	function f(n){
+		if(n>1){
+			var result = n * f(n-1);  // n!= n*f(n-1)*f(n-2) ..*1
+			return result;            // 3!=3*(3-1)*(3-2)
+		}else{
+			return n;
+		}	
+	}
+</script>
+</head>
+<body>
+<script>
+	var n = prompt("팩토리얼을 구할 정수를 입력?","");
+	document.write(n+"!="+f(n));
+</script>
+
+</body>
+</html>

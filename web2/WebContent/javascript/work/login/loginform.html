@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인 폼</title>
+<script>
+	/* function check(){
+		var id=document.getElementById("id");
+		var passwd=document.getElementById("passwd");
+		if(id.value==""){
+			alert("ID를 입력하세요");
+			id.focus();
+			return false;
+		}
+		if(passwd.value==""){
+			alert("비밀번호를 입력하세요");
+			passwd.focus();
+			return false;
+		}		
+	} */
+</script>
+
+<!-- 외부 자바스크립트 파일 불러오기 -->
+<script src="login.js"></script>
+
+</head>
+<body>
+
+	<form method="post" action="login.jsp" onSubmit="return check()">
+		<table border=1 width=350 align=center>
+			<caption>로그인</caption>
+			<tr>
+				<td>ID</td>
+				<td><input type=text size=30 autofocus="autofocus" name="id"
+					id="id"></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type=password size=30 name="passwd" id="passwd"></td>
+			</tr>
+			<tr>
+				<td colspan=2 align=center>
+					<!-- <button>Login</button> --> <!-- 전송기능 버튼 --> <!-- <button type=submit>Login</button> -->
+					<!-- 전송기능 버튼 --> <!-- <button type=button>Login</button> --> <!-- 버튼 -->
+
+					<!-- <input type=button value="login"> --> <!-- 버튼 --> <input
+					type=submit value="로그인"> <!-- 전송기능 버튼 --> <input type=reset
+					value="취소"> <!-- 초기화 버튼 -->
+				</td>
+			</tr>
+
+		</table>
+	</form>
+
+
+</body>
+</html>

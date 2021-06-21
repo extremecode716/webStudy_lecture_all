@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="PagingDto"    	   type="oracle.java.s20180102.model.PagingDto" />
+		<typeAlias alias="MemberDto"    	   type="oracle.java.s20180102.model.MemberDto" />
+		<typeAlias alias="PayDto"       	   type="oracle.java.s20180102.model.PayDto" />
+		<typeAlias alias="TourCardDto"  	   type="oracle.java.s20180102.model.TourCardDto" />
+		<typeAlias alias="GServDto"     	   type="oracle.java.s20180102.model.GServDto" />
+		<typeAlias alias="WishDto"      	   type="oracle.java.s20180102.model.WishDto" />		
+		<typeAlias alias="ReviewDto"   		   type="oracle.java.s20180102.model.ReviewDto" />		
+		<typeAlias alias="ContentsDto"    	   type="oracle.java.s20180102.model.ContentsDto" />		
+		<typeAlias alias="LikeItDto"   		   type="oracle.java.s20180102.model.LikeItDto" />		
+   		<typeAlias alias="NoticeDto"  		   type="oracle.java.s20180102.model.NoticeDto" />
+   		<typeAlias alias="SearchDto"  		   type="oracle.java.s20180102.model.SearchDto" />
+   		<typeAlias alias="GuideDto"    		   type="oracle.java.s20180102.model.GuideDto" />
+   		<typeAlias alias="CodeSetDto"          type="oracle.java.s20180102.model.CodeSetDto" />
+   		<typeAlias alias="GServContentsVo"     type="oracle.java.s20180102.vo.GServContentsVo" />
+   		<typeAlias alias="QADto"               type="oracle.java.s20180102.model.QADto" />
+		<typeAlias alias="ReservDto"    	   type="oracle.java.s20180102.model.ReservDto" />
+		<typeAlias alias="MsgDto"              type="oracle.java.s20180102.model.MsgDto"/>
+		<typeAlias alias="AccountingDto"       type="oracle.java.s20180102.model.AccountingDto"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="mybatis/gService.xml" />
+		<mapper resource="mybatis/reservation.xml" /> 
+		<mapper resource="mybatis/member.xml" /> 
+		<mapper resource="mybatis/payment.xml" /> 
+		<mapper resource="mybatis/wishList.xml" /> 
+		<mapper resource="mybatis/review.xml" /> 
+		<mapper resource="mybatis/contents.xml" /> 
+		<mapper resource="mybatis/likeIt.xml" /> 
+		<mapper resource="mybatis/notice.xml" /> 
+		<mapper resource="mybatis/search.xml" /> 
+		<mapper resource="mybatis/guide.xml" /> 
+		<mapper resource="mybatis/codeset.xml" /> 
+		<mapper resource="mybatis/QA.xml" /> 
+		<mapper resource="mybatis/msg.xml" />
+		<mapper resource="mybatis/websock.xml"/> 
+	</mappers>
+</configuration>

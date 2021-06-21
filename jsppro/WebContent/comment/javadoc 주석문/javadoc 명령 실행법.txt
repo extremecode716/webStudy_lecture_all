@@ -1,0 +1,5 @@
+* javadoc 명령 실행법 (c:\java\bin\javadoc.exe) 
+
+c:\> javadoc  CommentEx.java
+ 
+CommentEx.html 파일이 생성됨

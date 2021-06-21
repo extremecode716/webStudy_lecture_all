@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>스트링 객체</title>
+</head>
+<body>
+	<script>
+		var t = "Hello Thank you good luck to you";
+
+		// charAt(16) : 인덱스 16번 문자를 추출
+		document.write(t.charAt(16) + "<br>");
+
+		// indexOf('you'): 가장 먼저 나오는 'you'의 인덱스 번호를 구해줌
+		document.write(t.indexOf('you') + "<br>");
+
+		// indexOf('you',16): 인덱스 16번 이후에 가장 먼저 나오는 'you'의 인덱스 번호를 구해줌
+		document.write(t.indexOf('you', 16) + "<br>");
+
+		// lastIndexOf('you'): 끝에서 가장 먼저 나오는 'you'의 인덱스 번호를 구해줌
+		document.write(t.lastIndexOf('you') + "<br>");
+
+		// match('luck'): 가장 먼저 나오는 'luck'과 일치가 되는 문자를 반환
+		document.write(t.match('luck') + "<br>");
+
+		// substring(6,12): 인덱스 6번 부터 11번 까지의 문자를 추출
+		document.write(t.substring(6, 12) + "<br>");
+
+		// substr(21,4): 인덱스 21번 부터 4개의 문자를 추출
+		document.write(t.substr(21, 4) + "<br>");
+
+		// toUpperCase(): 대문자로 변환
+		document.write(t.toUpperCase() + "<br>");
+
+		// toLowerCase(): 소문자로 변환
+		document.write(t.toLowerCase() + "<br>");
+
+		// split(" "): 공백 문자를 기준으로 문자를 분리
+		var s = t.split(" ");
+		/* document.write(s[0]+"<br>");
+		 document.write(s[1]+"<br>");
+		 document.write(s[2]+"<br>");
+		 document.write(s[3]+"<br>"); */
+
+		for (var i = 0; i < s.length; i++) {
+			document.write(s[i] + "<br>");
+		}
+	</script>
+
+</body>
+</html>

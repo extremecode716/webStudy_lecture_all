@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var n1 = Number(prompt("정수1을 입력하세요?",""));
+	var n2 = Number(prompt("정수2를 입력하세요?",""));
+
+	function plus(){
+		alert(n1+n2);
+	}
+	function minus(){
+		alert(n1-n2);
+	}
+	function mul(){
+		alert(n1*n2);
+	}
+	function div(){
+		alert(n1/n2);
+	}
+</script>
+</head>
+<body>
+
+<form>
+	<input type="button" value="덧셈" onClick="plus()">
+	<input type="button" value="뺄셈" onClick="minus()">
+	<input type="button" value="곱셈" onClick="mul()">
+	<input type="button" value="나눗셈" onClick="div()">
+</form>
+
+</body>
+</html>

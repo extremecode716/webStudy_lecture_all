@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인 폼</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<!-- <script src="../js/jquery-1.6.4.min.js"></script> -->
+<script>
+	$(function(){
+//		$("form").submit(function(){
+		$("#myform").submit(function(){
+			if($("#id").val()==""){
+				alert("ID를 입력하세요");
+				$("#id").focus();
+				return false;
+			}
+			if($("#passwd").val()==""){
+				alert("비밀번호를 입력하세요");
+				$("#passwd").focus();
+				return false;
+			}
+		});
+	});
+</script>
+
+</head>
+<body>
+
+<table border=1 align=center width="300" height=110>
+<form id="myform" method="post" action="login.jsp">
+	<caption>로그인</caption>
+	<tr><td>ID</td>
+		<td><input type=text autofocus name="id" id="id">
+			<input type=hidden name="test" value="1234">
+		</td>
+	</tr>
+	<tr><td>비밀번호</td>
+		<td><input type=password name="passwd" id="passwd"></td>
+	</tr>
+	<tr><td colspan=2 align=center>
+			<input type=submit value="로그인">
+			<input type=reset value="취소">
+		</td>
+	</tr>
+</form>
+</table>
+
+</body>
+</html>

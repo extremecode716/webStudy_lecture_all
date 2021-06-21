@@ -1,0 +1,46 @@
+회원관리
+
+1. Connection Pool
+2. DTO, DAO
+3. 세션(session)
+
+
+테이블 : member
+
+id  varchar2(20)    primary key
+passwd  varchar2(20) not null
+name varchar2(20) not null
+jumin1 varchar2(6) not null
+jumin2 varchar2(7) not null
+mailid  varchar2(30) 
+domain  varchar2(30) 
+tel1 varchar2(5)
+tel2 varchar2(5)
+tel3 varchar2(5)
+phone1 varchar2(5)
+phone2 varchar2(5)
+phone3 varchar2(5)
+post varchar2(10)
+address varchar2(200)
+gender varchar2(20)
+hobby varchar2(50)
+intro varchar2(2000)
+register timestamp
+
+
+member - MemberDTO.java (DTO 클래스)
+
+member - MemberDAO.java (DAO 클래스)
+
+
+회원가입폼 : memberform.html --> member.jsp
+
+ID중복검사 : idcheck.jsp
+
+로그인 폼 : loginform.jsp --> login.jsp --> main.jsp
+
+수정 폼 : updateform.jsp --> update.jsp
+
+삭제 폼 : deleteform.jsp  --> delete.jsp
+
+로그아웃 : logout.jsp
